@@ -25,7 +25,6 @@ class AppViewModel : ViewModel() {
 
     fun resetEmail() {
         usedMail.clear()
-        _uiState.value = AppUiState(currentMail = "")
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -38,12 +37,12 @@ class AppViewModel : ViewModel() {
     }
 
     fun checkUserMail() {
-        if(isValidEmail(userMail)){
-           //TODO
-        }else{
+        if (isValidEmail(userMail)) {
+            _uiState.update { currentState -> currentState.copy(isMailWrong = false) }
+        } else {
             _uiState.update { currentState -> currentState.copy(isMailWrong = true) }
             updateUserEmail("")
         }
-
     }
+
 }
