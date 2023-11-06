@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,7 +11,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -27,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -41,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.compose.AppTheme
+import g58112.mobg5.brusselseats.ui.theme.AppTheme
 import g58112.mobg5.brusselseats.R
 
 @Composable
@@ -51,7 +47,7 @@ fun LoginScreen(
     modifier: Modifier = Modifier
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
-    val appUiState by appViewModel.uiState.collectAsState();
+    val appUiState by appViewModel.uiState.collectAsState()
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState()),
@@ -69,12 +65,17 @@ fun LoginScreen(
                 .offset(y = -offsetLogo)
         )
 
-        val offsetLayoutButton= 80.dp
+        val offsetLayoutButton = 80.dp
 
         AppLayout(
             onUserMailChanged = { appViewModel.updateUserEmail(it) },
             userMail = appViewModel.userMail,
-            onKeyboardDone = { appViewModel.checkUserMail() },
+            onKeyboardDone = {
+                appViewModel.checkUserMail()
+                if (!appViewModel.uiState.value.isMailWrong) {
+                    navController.navigate(BrusselsNavScreen.LogoESI.name)
+                }
+            },
             isMailWrong = appUiState.isMailWrong,
             modifier = Modifier
                 .fillMaxSize()
@@ -94,9 +95,9 @@ fun LoginScreen(
                     .offset(y = -offsetLayoutButton),
                 onClick = {
                     appViewModel.checkUserMail()
-                    //if (!appUiState.isMailWrong) WHYYYYYYYYYY DONSEN'T WORK //TODO
+                    //if (!appUiState.isMailWrong) //WHYYYYYYYYYY DONSEN'T WORK //TODO
                     if (!appViewModel.uiState.value.isMailWrong) {
-                        navController.navigate(BrusselsNavScreen.Logo_ESI.name)
+                        navController.navigate(BrusselsNavScreen.LogoESI.name)
                     }
                 }
             ) {

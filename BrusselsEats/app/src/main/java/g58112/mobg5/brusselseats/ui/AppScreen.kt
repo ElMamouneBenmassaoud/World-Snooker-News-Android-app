@@ -26,16 +26,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.compose.AppTheme
+import g58112.mobg5.brusselseats.ui.theme.AppTheme
 
-enum class BrusselsNavScreen() {
+enum class BrusselsNavScreen {
     Login,
-    Logo_ESI,
+    LogoESI,
 }
 @Composable
 fun AppScreen(
-    appViewModel: AppViewModel = viewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    appViewModel: AppViewModel = viewModel()
 ) {
 
     val navController = rememberNavController()
@@ -51,7 +51,7 @@ fun AppScreen(
                 LoginScreen(appViewModel = appViewModel, navController = navController)
             }
 
-            composable(route = BrusselsNavScreen.Logo_ESI.name) {
+            composable(route = BrusselsNavScreen.LogoESI.name) {
                 LargeCenteredImage()
             }
         }

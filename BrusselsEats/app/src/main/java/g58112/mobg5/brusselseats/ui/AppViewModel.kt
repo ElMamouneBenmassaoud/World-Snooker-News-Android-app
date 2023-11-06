@@ -17,13 +17,12 @@ class AppViewModel : ViewModel() {
     private var usedMail: MutableSet<String> = mutableSetOf()
 
     var userMail by mutableStateOf("")
-        private set
 
     init {
         resetEmail()
     }
 
-    fun resetEmail() {
+    private fun resetEmail() {
         usedMail.clear()
     }
 
