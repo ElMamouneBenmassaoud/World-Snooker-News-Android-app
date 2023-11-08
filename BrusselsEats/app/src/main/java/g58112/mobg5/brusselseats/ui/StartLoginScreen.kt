@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -43,11 +44,18 @@ import g58112.mobg5.brusselseats.R
 @Composable
 fun LoginScreen(
     appViewModel: AppViewModel,
-    navController: NavHostController,
+    navigate: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
     val appUiState by appViewModel.uiState.collectAsState()
+
+    LaunchedEffect(key1 = appUiState, block = {
+        if (!appUiState.isMailWrong && appViewModel.userMail.isNotEmpty()) {
+            navigate()
+        }
+    })
+
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState()),
@@ -72,9 +80,6 @@ fun LoginScreen(
             userMail = appViewModel.userMail,
             onKeyboardDone = {
                 appViewModel.checkUserMail()
-                if (!appViewModel.uiState.value.isMailWrong) {
-                    navController.navigate(BrusselsNavScreen.LogoESI.name)
-                }
             },
             isMailWrong = appUiState.isMailWrong,
             modifier = Modifier
@@ -95,10 +100,6 @@ fun LoginScreen(
                     .offset(y = -offsetLayoutButton),
                 onClick = {
                     appViewModel.checkUserMail()
-                    //if (!appUiState.isMailWrong) //WHYYYYYYYYYY DONSEN'T WORK //TODO
-                    if (!appViewModel.uiState.value.isMailWrong) {
-                        navController.navigate(BrusselsNavScreen.LogoESI.name)
-                    }
                 }
             ) {
                 Text(
@@ -181,7 +182,7 @@ fun LargeCenteredImage(modifier: Modifier = Modifier) {
 fun StartLoginScreenPreview(appViewModel: AppViewModel = viewModel()) {
     val navController = rememberNavController()
     AppTheme {
-        LoginScreen(appViewModel, navController)
+        LoginScreen(appViewModel, {navController.navigate(BrusselsNavScreen.LogoESI.name)})
     }
 }
 

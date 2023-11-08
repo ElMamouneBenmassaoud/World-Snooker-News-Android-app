@@ -48,7 +48,10 @@ fun AppScreen(
             modifier = modifier.padding(innerPadding)
         ) {
             composable(route = BrusselsNavScreen.Login.name) {
-                LoginScreen(appViewModel = appViewModel, navController = navController)
+                LoginScreen(
+                    appViewModel = appViewModel,
+                    navigate = {navController.navigate(BrusselsNavScreen.LogoESI.name)}
+                    )
             }
 
             composable(route = BrusselsNavScreen.LogoESI.name) {
