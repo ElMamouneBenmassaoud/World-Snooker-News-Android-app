@@ -27,8 +27,9 @@ class AppViewModel : ViewModel() {
     }
 
     private fun isValidEmail(email: String): Boolean {
+        var trimmedEmail = email.trimEnd() // Supprime les espaces à la fin
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return email.matches(emailPattern.toRegex())
+        return trimmedEmail.matches(emailPattern.toRegex())
     }
 
     fun updateUserEmail(email: String) {
