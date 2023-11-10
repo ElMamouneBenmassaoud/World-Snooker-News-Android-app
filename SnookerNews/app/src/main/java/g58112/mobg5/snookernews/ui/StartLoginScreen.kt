@@ -26,6 +26,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,13 +49,13 @@ fun LoginScreen(
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
     val appUiState by appViewModel.uiState.collectAsState()
-/*
-    LaunchedEffect(key1 = appUiState, block = {
-        if (!appViewModel.uiState.value.isMailWrong && appViewModel.userMail.isNotEmpty()) {
-            navigate()
-        }
-    })
-*/
+    /*
+        LaunchedEffect(key1 = appUiState, block = {
+            if (!appViewModel.uiState.value.isMailWrong && appViewModel.userMail.isNotEmpty()) {
+                navigate()
+            }
+        })
+    */
     Column(
         modifier = modifier
             .verticalScroll(rememberScrollState()),
@@ -106,7 +107,7 @@ fun LoginScreen(
                         navigate()
                     }
                 },
-                ) {
+            ) {
                 Text(
                     text = stringResource(R.string.submit),
                     fontSize = 16.sp,
@@ -115,10 +116,26 @@ fun LoginScreen(
             }
         }
     }
+    AuthorCredits(modifier = modifier)
+}
+@Composable
+private fun AuthorCredits(modifier: Modifier){
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        Text(
+            text = "Copyright © 2023 El Mamoune Benmassaoud",
+            fontSize = 12.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+        )
+    }
 }
 
 @Composable
-fun AppLayout(
+private fun AppLayout(
     onUserMailChanged: (String) -> Unit,
     userMail: String,
     isMailWrong: Boolean,
@@ -181,6 +198,7 @@ fun LargeCenteredImage(modifier: Modifier = Modifier) {
             modifier = Modifier.size(300.dp)
         )
     }
+    AuthorCredits(modifier = modifier)
 }
 
 @Preview(showBackground = true)
