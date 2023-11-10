@@ -5,9 +5,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 
-private val _lightColors = lightColorScheme(
+private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -16,7 +17,7 @@ private val _lightColors = lightColorScheme(
     onSecondary = md_theme_light_onSecondary,
     secondaryContainer = md_theme_light_secondaryContainer,
     onSecondaryContainer = md_theme_light_onSecondaryContainer,
-    tertiary = md_theme_light_tertiary,
+    tertiary = Color.Black,
     onTertiary = md_theme_light_onTertiary,
     tertiaryContainer = md_theme_light_tertiaryContainer,
     onTertiaryContainer = md_theme_light_onTertiaryContainer,
@@ -40,7 +41,7 @@ private val _lightColors = lightColorScheme(
 )
 
 
-private val _darkColors = darkColorScheme(
+private val DarkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
     primaryContainer = md_theme_dark_primaryContainer,
@@ -75,12 +76,12 @@ private val _darkColors = darkColorScheme(
 @Composable
 fun AppTheme(
   useDarkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable () -> Unit
+  content: @Composable() () -> Unit
 ) {
   val colors = if (!useDarkTheme) {
-      _lightColors
+    LightColors
   } else {
-      _darkColors
+    DarkColors
   }
 
   MaterialTheme(

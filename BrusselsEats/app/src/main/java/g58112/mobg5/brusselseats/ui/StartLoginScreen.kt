@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -36,10 +37,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.brusselseats.ui.theme.AppTheme
 import g58112.mobg5.brusselseats.R
+import g58112.mobg5.brusselseats.ui.theme.md_theme_light_scrim
+import g58112.mobg5.brusselseats.ui.theme.seed
 
 @Composable
 fun LoginScreen(
@@ -49,15 +51,15 @@ fun LoginScreen(
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
     val appUiState by appViewModel.uiState.collectAsState()
-
+/*
     LaunchedEffect(key1 = appUiState, block = {
-        if (!appUiState.isMailWrong && appViewModel.userMail.isNotEmpty()) {
+        if (!appViewModel.uiState.value.isMailWrong && appViewModel.userMail.isNotEmpty()) {
             navigate()
         }
     })
-
+*/
     Column(
-        modifier = Modifier
+        modifier = modifier
             .verticalScroll(rememberScrollState()),
 
         verticalArrangement = Arrangement.Center,
@@ -65,7 +67,7 @@ fun LoginScreen(
     ) {
         val offsetLogo = 30.dp
         Image(
-            painter = painterResource(id = R.drawable.app_logo),
+            painter = painterResource(id = R.drawable.snooker_logo),
             contentDescription = "The app logo 'BruxEats'",
             modifier = Modifier
                 .width(600.dp)
@@ -80,6 +82,9 @@ fun LoginScreen(
             userMail = appViewModel.userMail,
             onKeyboardDone = {
                 appViewModel.checkUserMail()
+                if (!appViewModel.uiState.value.isMailWrong){
+                    navigate()
+                }
             },
             isMailWrong = appUiState.isMailWrong,
             modifier = Modifier
@@ -100,11 +105,15 @@ fun LoginScreen(
                     .offset(y = -offsetLayoutButton),
                 onClick = {
                     appViewModel.checkUserMail()
-                }
-            ) {
+                    if (!appViewModel.uiState.value.isMailWrong){
+                        navigate()
+                    }
+                },
+                ) {
                 Text(
                     text = stringResource(R.string.submit),
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = md_theme_light_scrim
                 )
             }
         }
