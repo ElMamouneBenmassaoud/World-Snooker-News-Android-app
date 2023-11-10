@@ -66,7 +66,7 @@ fun LoginScreen(
         val offsetLogo = 30.dp
         Image(
             painter = painterResource(id = R.drawable.snooker_logo),
-            contentDescription = "The app logo 'BruxEats'",
+            contentDescription = "The app logo of World Snooker News",
             modifier = Modifier
                 .width(600.dp)
                 .height(300.dp)
