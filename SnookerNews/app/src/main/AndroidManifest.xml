@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/my_emoji_apple"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BrusselsEats"
+        android:theme="@style/Theme.SnookerNews"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.BrusselsEats">
+            android:theme="@style/Theme.SnookerNews">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

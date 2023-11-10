@@ -74,13 +74,12 @@ fun LoginScreen(
         )
 
         val offsetLayoutButton = 80.dp
-
         AppLayout(
             onUserMailChanged = { appViewModel.updateUserEmail(it) },
             userMail = appViewModel.userMail,
             onKeyboardDone = {
                 appViewModel.checkUserMail()
-                if (!appViewModel.uiState.value.isMailWrong){
+                if (!appViewModel.uiState.value.isMailWrong) {
                     navigate()
                 }
             },
@@ -89,6 +88,7 @@ fun LoginScreen(
                 .fillMaxSize()
                 .offset(y = -offsetLayoutButton)
         )
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -103,7 +103,7 @@ fun LoginScreen(
                     .offset(y = -offsetLayoutButton),
                 onClick = {
                     appViewModel.checkUserMail()
-                    if (!appViewModel.uiState.value.isMailWrong){
+                    if (!appViewModel.uiState.value.isMailWrong) {
                         navigate()
                     }
                 },
@@ -118,8 +118,9 @@ fun LoginScreen(
     }
     AuthorCredits(modifier = modifier)
 }
+
 @Composable
-private fun AuthorCredits(modifier: Modifier){
+private fun AuthorCredits(modifier: Modifier) {
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -206,7 +207,7 @@ fun LargeCenteredImage(modifier: Modifier = Modifier) {
 fun StartLoginScreenPreview(appViewModel: AppViewModel = viewModel()) {
     val navController = rememberNavController()
     AppTheme {
-        LoginScreen(appViewModel, {navController.navigate(BrusselsNavScreen.LogoESI.name)})
+        LoginScreen(appViewModel, { navController.navigate(BrusselsNavScreen.LogoESI.name) })
     }
 }
 

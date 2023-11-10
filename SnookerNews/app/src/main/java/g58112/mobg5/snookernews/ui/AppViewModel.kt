@@ -31,7 +31,7 @@ class AppViewModel : ViewModel() {
         return email.matches(emailPattern.toRegex())
     }
 
-    fun updateUserEmail(email: String){
+    fun updateUserEmail(email: String) {
         userMail = email
     }
 

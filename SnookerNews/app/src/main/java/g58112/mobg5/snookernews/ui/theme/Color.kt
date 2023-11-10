@@ -1,4 +1,5 @@
 package g58112.mobg5.snookernews.ui.theme
+
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF74D5FF)
@@ -9,7 +10,8 @@ val md_theme_light_secondary = Color(0xFF4D616C)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFD0E6F2)
 val md_theme_light_onSecondaryContainer = Color(0xFF081E27)
-val md_theme_light_tertiary = Color(0xFF5D5B7D)
+
+//val md_theme_light_tertiary = Color(0xFF5D5B7D)
 val md_theme_light_onTertiary = Color(0xFFFFFFFF)
 val md_theme_light_tertiaryContainer = Color(0xFFE3DFFF)
 val md_theme_light_onTertiaryContainer = Color(0xFF1A1836)
@@ -27,7 +29,8 @@ val md_theme_light_outline = Color(0xFF70787D)
 val md_theme_light_inverseOnSurface = Color(0xFFF0F1F3)
 val md_theme_light_inverseSurface = Color(0xFF2E3133)
 val md_theme_light_inversePrimary = Color(0xFF69D3FF)
-val md_theme_light_shadow = Color(0xFF000000)
+
+//val md_theme_light_shadow = Color(0xFF000000)
 val md_theme_light_surfaceTint = Color(0xFF006684)
 val md_theme_light_outlineVariant = Color(0xFFC0C8CD)
 val md_theme_light_scrim = Color(0xFF000000)
@@ -58,11 +61,11 @@ val md_theme_dark_outline = Color(0xFF8A9297)
 val md_theme_dark_inverseOnSurface = Color(0xFF191C1E)
 val md_theme_dark_inverseSurface = Color(0xFFE1E2E5)
 val md_theme_dark_inversePrimary = Color(0xFF006684)
-val md_theme_dark_shadow = Color(0xFF000000)
+
+//val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF69D3FF)
 val md_theme_dark_outlineVariant = Color(0xFF40484C)
 val md_theme_dark_scrim = Color(0xFF000000)
 
 
-
-val seed = Color(0xFF74D5FF)
+//val seed = Color(0xFF74D5FF)
