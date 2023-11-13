@@ -13,6 +13,7 @@ class AppViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(AppUiState())
     val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
+    private val initialUiState = AppUiState()
 
     private var usedMail: MutableSet<String> = mutableSetOf()
 
@@ -43,6 +44,11 @@ class AppViewModel : ViewModel() {
             _uiState.update { currentState -> currentState.copy(isMailWrong = true) }
             updateUserEmail("")
         }
+        _uiState.update { currentState -> currentState.copy(isEmailValidationAsked = true) }
+    }
+
+    fun resetAppUiState() {
+        _uiState.value = initialUiState
     }
 
 }

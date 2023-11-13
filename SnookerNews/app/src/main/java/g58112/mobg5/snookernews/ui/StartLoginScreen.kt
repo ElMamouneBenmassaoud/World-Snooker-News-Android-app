@@ -1,5 +1,6 @@
 package g58112.mobg5.snookernews.ui
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -49,13 +52,14 @@ fun LoginScreen(
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
     val appUiState by appViewModel.uiState.collectAsState()
-    /*
-        LaunchedEffect(key1 = appUiState, block = {
-            if (!appViewModel.uiState.value.isMailWrong && appViewModel.userMail.isNotEmpty()) {
-                navigate()
-            }
-        })
-    */
+
+    LaunchedEffect(key1 = appUiState, block = {
+        if (!appUiState.isMailWrong && appUiState.isEmailValidationAsked) {
+            navigate()
+            appViewModel.resetAppUiState()
+        }
+    })
+
     Column(
         modifier = modifier
             .verticalScroll(rememberScrollState()),
@@ -79,11 +83,9 @@ fun LoginScreen(
             userMail = appViewModel.userMail,
             onKeyboardDone = {
                 appViewModel.checkUserMail()
-                if (!appViewModel.uiState.value.isMailWrong) {
-                    navigate()
-                }
             },
             isMailWrong = appUiState.isMailWrong,
+            isEmailValidationAsked = appUiState.isEmailValidationAsked,
             modifier = Modifier
                 .fillMaxSize()
                 .offset(y = -offsetLayoutButton)
@@ -103,9 +105,6 @@ fun LoginScreen(
                     .offset(y = -offsetLayoutButton),
                 onClick = {
                     appViewModel.checkUserMail()
-                    if (!appViewModel.uiState.value.isMailWrong) {
-                        navigate()
-                    }
                 },
             ) {
                 Text(
@@ -140,6 +139,7 @@ private fun AppLayout(
     onUserMailChanged: (String) -> Unit,
     userMail: String,
     isMailWrong: Boolean,
+    isEmailValidationAsked: Boolean,
     onKeyboardDone: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -166,14 +166,14 @@ private fun AppLayout(
                 modifier = Modifier.fillMaxWidth(),
                 onValueChange = onUserMailChanged,
                 label = {
-                    if (isMailWrong) {
+                    if (isMailWrong && isEmailValidationAsked) {
                         Text(stringResource(R.string.wrong_mail))
                     } else {
                         Text(stringResource(R.string.enter_your_email))
                     }
                 },
 
-                isError = isMailWrong,
+                isError = isMailWrong && isEmailValidationAsked,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
