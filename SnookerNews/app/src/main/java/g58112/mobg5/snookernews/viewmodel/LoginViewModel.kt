@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui
+package g58112.mobg5.snookernews.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marsphotos.network.AuthApi
 import com.example.marsphotos.network.LoginBody
+import g58112.mobg5.snookernews.viewmodel.state.AppUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,11 +21,22 @@ sealed interface SnookerUiState {
     object Loading : SnookerUiState
 }
 
-
-class AppViewModel : ViewModel() {
+/**
+ * ViewModel for managing UI state and interactions in the Snooker app.
+ */
+class LoginViewModel : ViewModel() {
     var snookerUiState: SnookerUiState by mutableStateOf(SnookerUiState.Success)
         private set
 
+    var authError by mutableStateOf(false)
+        private set
+
+    /**
+     * Resets the authentication error flag to false.
+     */
+    fun hideError() {
+        authError = false
+    }
 
     private val _uiState = MutableStateFlow(AppUiState())
     val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
@@ -40,40 +52,55 @@ class AppViewModel : ViewModel() {
         resetEmail()
     }
 
+    /**
+     * Clears the list of used emails.
+     */
     private fun resetEmail() {
         usedMail.clear()
     }
 
+    /**
+     * Checks if the provided email string is a valid email format.
+     *
+     * @param email The email string to validate.
+     * @return True if the email is valid, false otherwise.
+     */
     fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
     }
 
+    /**
+     * Updates the user email state.
+     *
+     * @param email The new email to be set.
+     */
     fun updateUserEmail(email: String) {
         userMail = email
     }
 
+    /**
+     * Updates the user password state.
+     *
+     * @param password The new password to be set.
+     */
     fun updateUserPassword(password: String) {
         userPassword = password
     }
-/*
-    fun checkUserCredentials() {
-        if (isValidPassword(userPassword)) {
-            _uiState.update { currentState -> currentState.copy(isMailWrong = false, isPasswordWrong = false) }
-            authenticate(userMail, userPassword)
-        } else {
-            _uiState.update { currentState -> currentState.copy(isMailWrong = true, isPasswordWrong = true) }
-            updateUserEmail("")
-            updateUserPassword("")
-        }
-        _uiState.update { currentState -> currentState.copy(isEmailValidationAsked = true) }
-    }
-*/
 
-
+    /**
+     * Resets the UI state to its initial value.
+     */
     fun resetAppUiState() {
         _uiState.value = initialUiState
     }
 
+    /**
+     * Authenticates a user with the provided email and password.
+     * Updates the UI state based on the result of the authentication.
+     *
+     * @param email The user's email address.
+     * @param password The user's password.
+     */
     fun authenticate(email: String, password: String) {
         viewModelScope.launch {
             try {
@@ -86,11 +113,24 @@ class AppViewModel : ViewModel() {
                 snookerUiState = SnookerUiState.Success
 
                 if (response.isSuccessful) {
-                    _uiState.update { currentState -> currentState.copy(isMailWrong = false, isPasswordWrong = false) }
+                    Log.d("Auth", "authenticate: Success")
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            isMailWrong = false,
+                            isPasswordWrong = false
+                        )
+                    }
+                    authError = false
                 } else {
-                    Log.d("test","authenticate: echec")
-                    _uiState.update { currentState -> currentState.copy(isMailWrong = true, isPasswordWrong = true) }
+                    Log.d("Auth", "authenticate: Failure")
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            isMailWrong = true,
+                            isPasswordWrong = true
+                        )
+                    }
                     updateUserPassword("")
+                    authError = true
                 }
                 _uiState.update { currentState -> currentState.copy(isEmailValidationAsked = true) }
             } catch (e: Exception) {
