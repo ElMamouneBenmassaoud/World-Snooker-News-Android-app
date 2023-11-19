@@ -1,16 +1,13 @@
 package g58112.mobg5.snookernews.ui
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
@@ -23,17 +20,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -79,13 +75,17 @@ fun LoginScreen(
 
         val offsetLayoutButton = 80.dp
         AppLayout(
+            appViewModel = appViewModel,
             onUserMailChanged = { appViewModel.updateUserEmail(it) },
             userMail = appViewModel.userMail,
             onKeyboardDone = {
-                appViewModel.checkUserMail()
+                appViewModel.authenticate(appViewModel.userMail, appViewModel.userPassword)
             },
             isMailWrong = appUiState.isMailWrong,
             isEmailValidationAsked = appUiState.isEmailValidationAsked,
+            onPasswordChanged = { appViewModel.updateUserPassword(it) },
+            userPassword = appViewModel.userPassword,
+            isPasswordWrong = appUiState.isPasswordWrong,
             modifier = Modifier
                 .fillMaxSize()
                 .offset(y = -offsetLayoutButton)
@@ -104,7 +104,7 @@ fun LoginScreen(
                     .fillMaxWidth()
                     .offset(y = -offsetLayoutButton),
                 onClick = {
-                    appViewModel.checkUserMail()
+                    appViewModel.authenticate(appViewModel.userMail, appViewModel.userPassword)
                 },
             ) {
                 Text(
@@ -115,31 +115,18 @@ fun LoginScreen(
             }
         }
     }
-    AuthorCredits(modifier = modifier)
-}
-
-@Composable
-private fun AuthorCredits(modifier: Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
-        Text(
-            text = "Copyright © 2023 El Mamoune Benmassaoud",
-            fontSize = 12.sp,
-            color = Color.Gray,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-        )
-    }
 }
 
 @Composable
 private fun AppLayout(
+    appViewModel: AppViewModel,
     onUserMailChanged: (String) -> Unit,
     userMail: String,
     isMailWrong: Boolean,
     isEmailValidationAsked: Boolean,
+    onPasswordChanged: (String) -> Unit,
+    userPassword: String,
+    isPasswordWrong: Boolean,
     onKeyboardDone: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -166,7 +153,7 @@ private fun AppLayout(
                 modifier = Modifier.fillMaxWidth(),
                 onValueChange = onUserMailChanged,
                 label = {
-                    if (isMailWrong && isEmailValidationAsked) {
+                    if (!appViewModel.isValidEmail(userMail) && isEmailValidationAsked) {
                         Text(stringResource(R.string.wrong_mail))
                     } else {
                         Text(stringResource(R.string.enter_your_email))
@@ -181,25 +168,25 @@ private fun AppLayout(
                     onDone = { onKeyboardDone() }
                 )
             )
+            OutlinedTextField(
+                value = userPassword,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier.fillMaxWidth(),
+                onValueChange = onPasswordChanged,
+                label = { Text(stringResource(R.string.enter_your_password)) },
+                isError = isPasswordWrong && isEmailValidationAsked,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = { onKeyboardDone() }
+                ),
+                visualTransformation = PasswordVisualTransformation(), // Masquer le mot de passe
+                maxLines = 1
+            )
         }
     }
-}
-
-
-@Composable
-fun LargeCenteredImage(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.esi_logo),
-            contentDescription = "Logo esi he2b",
-            modifier = Modifier.size(300.dp)
-        )
-    }
-    AuthorCredits(modifier = modifier)
 }
 
 @Preview(showBackground = true)
