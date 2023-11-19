@@ -22,6 +22,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.navigation.compose.NavHost
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -36,7 +42,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.ui.theme.AppTheme
@@ -44,6 +52,7 @@ import g58112.mobg5.snookernews.ui.theme.AppTheme
 enum class BrusselsNavScreen {
     Login,
     LogoESI,
+    About,
 }
 
 @Composable
@@ -55,7 +64,14 @@ fun AppScreen(
 
     val navController = rememberNavController()
 
-    Scaffold { innerPadding ->
+    val currentScreen = navController.currentBackStackEntryAsState().value?.destination?.route
+
+    Scaffold(
+        bottomBar = {
+            if (currentScreen != BrusselsNavScreen.Login.name) {
+                BottomNavigationBar(navController = navController)
+            }
+        }) { innerPadding ->
         when (snookerUiState) {
             is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
             is SnookerUiState.Success -> NavHost(
@@ -63,21 +79,46 @@ fun AppScreen(
                 startDestination = BrusselsNavScreen.Login.name,
                 modifier = modifier.padding(innerPadding)
             ) {
-                    composable(route = BrusselsNavScreen.Login.name) {
-                        LoginScreen(
-                            appViewModel = appViewModel,
-                            navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
-                        )
-                    }
-
-                    composable(route = BrusselsNavScreen.LogoESI.name) {
-                        LargeCenteredImage()
-                    }
+                composable(route = BrusselsNavScreen.Login.name) {
+                    LoginScreen(
+                        appViewModel = appViewModel,
+                        navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
+                    )
                 }
+
+                composable(route = BrusselsNavScreen.LogoESI.name) {
+                    LargeCenteredImage()
+                }
+                composable(route = BrusselsNavScreen.About.name) {
+                    ProfileScreen(userName = "Mamoun", school = "ESI", course = "Mobg5", group = "E11", userEmail = appViewModel.userMail)
+                }
+            }
+
             is SnookerUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
         }
 
         AuthorCredits(modifier = modifier)
+    }
+}
+
+@Composable
+fun BottomNavigationBar(navController: NavController) {
+    NavigationBar {
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+            label = { Text("Home") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.LogoESI.name,
+            onClick = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
+        )
+
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+            label = { Text("About") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
+            onClick = { navController.navigate(BrusselsNavScreen.About.name) }
+        )
+
+        // Vous pouvez ajouter d'autres items si nécessaire
     }
 }
 
