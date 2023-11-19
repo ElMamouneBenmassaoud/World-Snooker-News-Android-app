@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Snooker News</string>
     <string name="submit">Submit</string>
-    <string name="instructions">Enter your email</string>
+    <string name="instructions">Sign In</string>
     <string name="wrong_mail">The email is not valid !</string>
     <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Entrer votre mot de passe</string>
+    <string name="wrong_password">Mot de passe Incorrect</string>
+    <string name="loading">Loading</string>
+    <string name="loading_failed">Verify connection</string>
 </resources>
