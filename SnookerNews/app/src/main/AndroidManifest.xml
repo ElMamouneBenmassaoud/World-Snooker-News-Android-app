@@ -10,7 +10,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/icon_app_snooker_news"
+        android:icon="@mipmap/snooker_app_icon_outside"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/my_emoji_apple"
         android:supportsRtl="true"

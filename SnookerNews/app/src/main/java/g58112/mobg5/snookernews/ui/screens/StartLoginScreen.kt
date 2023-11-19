@@ -79,17 +79,17 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val offsetLogo = 30.dp
+        val offsetLogo = 0.dp
         Image(
-            painter = painterResource(id = R.drawable.snooker_logo),
+            painter = painterResource(id = R.drawable.snooker_icon_app),
             contentDescription = "The app logo of World Snooker News",
             modifier = Modifier
-                .width(600.dp)
-                .height(300.dp)
+                .width(400.dp)
+                .height(200.dp)
                 .offset(y = -offsetLogo)
         )
 
-        val offsetLayoutButton = 80.dp
+        val offsetLayoutButton = 10.dp
         AppLayout(
             loginViewModel = loginViewModel,
             onUserMailChanged = { loginViewModel.updateUserEmail(it) },
@@ -104,7 +104,7 @@ fun LoginScreen(
             isPasswordWrong = appUiState.isPasswordWrong,
             modifier = Modifier
                 .fillMaxSize()
-                .offset(y = -offsetLayoutButton)
+                .offset(y = offsetLayoutButton)
         )
 
         Column(
@@ -118,7 +118,7 @@ fun LoginScreen(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .offset(y = -offsetLayoutButton),
+                    .offset(y = offsetLayoutButton),
                 onClick = {
                     loginViewModel.authenticate(
                         loginViewModel.userMail,
@@ -187,7 +187,7 @@ private fun AppLayout(
 
                 isError = isMailWrong && isEmailValidationAsked,
                 keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Done
+                    imeAction = ImeAction.Next
                 ),
                 keyboardActions = KeyboardActions(
                     onDone = { onKeyboardDone() }
