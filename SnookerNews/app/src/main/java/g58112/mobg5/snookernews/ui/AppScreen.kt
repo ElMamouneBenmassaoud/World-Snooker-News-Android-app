@@ -15,15 +15,30 @@
  */
 package g58112.mobg5.snookernews.ui
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.navigation.compose.NavHost
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 
 enum class BrusselsNavScreen {
@@ -36,26 +51,77 @@ fun AppScreen(
     modifier: Modifier = Modifier,
     appViewModel: AppViewModel = viewModel()
 ) {
+    val snookerUiState = appViewModel.snookerUiState
 
     val navController = rememberNavController()
 
     Scaffold { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = BrusselsNavScreen.Login.name,
-            modifier = modifier.padding(innerPadding)
-        ) {
-            composable(route = BrusselsNavScreen.Login.name) {
-                LoginScreen(
-                    appViewModel = appViewModel,
-                    navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
-                )
-            }
+        when (snookerUiState) {
+            is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+            is SnookerUiState.Success -> NavHost(
+                navController = navController,
+                startDestination = BrusselsNavScreen.Login.name,
+                modifier = modifier.padding(innerPadding)
+            ) {
+                    composable(route = BrusselsNavScreen.Login.name) {
+                        LoginScreen(
+                            appViewModel = appViewModel,
+                            navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
+                        )
+                    }
 
-            composable(route = BrusselsNavScreen.LogoESI.name) {
-                LargeCenteredImage()
-            }
+                    composable(route = BrusselsNavScreen.LogoESI.name) {
+                        LargeCenteredImage()
+                    }
+                }
+            is SnookerUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
         }
+
+        AuthorCredits(modifier = modifier)
+    }
+}
+
+
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    Image(
+        modifier = modifier.size(200.dp),
+        painter = painterResource(R.drawable.loading_img),
+        contentDescription = stringResource(R.string.loading)
+    )
+}
+
+
+/**
+ * The home screen displaying error message with re-attempt button.
+ */
+@Composable
+fun ErrorScreen(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.connection_error), contentDescription = ""
+        )
+        Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
+    }
+}
+
+@Composable
+private fun AuthorCredits(modifier: Modifier) {
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        Text(
+            text = "Copyright © 2023 El Mamoune Benmassaoud",
+            fontSize = 12.sp,
+            color = Color.Gray,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+        )
     }
 }
 
