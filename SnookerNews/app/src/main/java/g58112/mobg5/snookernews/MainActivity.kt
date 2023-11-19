@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import g58112.mobg5.snookernews.ui.AppScreen
+import g58112.mobg5.snookernews.ui.screens.AppScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {

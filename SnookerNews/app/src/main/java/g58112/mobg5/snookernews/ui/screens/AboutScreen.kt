@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui
+package g58112.mobg5.snookernews.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import g58112.mobg5.snookernews.R
@@ -56,11 +57,11 @@ private fun ProfileImage() {
 
 @Composable
 private fun UserInfo(name: String, email: String, courseGroup: String, school: String) {
-    Spacer(modifier = Modifier.height(20.dp))
-    Text(text = name, style = MaterialTheme.typography.displaySmall)
+    Spacer(modifier = Modifier.height(50.dp))
+    Text(text = name, textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyLarge)
     Spacer(modifier = Modifier.height(8.dp))
     Text(text = email, style = MaterialTheme.typography.bodyMedium)
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(8.dp))
     Text(text = courseGroup, style = MaterialTheme.typography.bodySmall)
     Spacer(modifier = Modifier.height(8.dp))
     Text(text = school, style = MaterialTheme.typography.bodySmall)
@@ -70,7 +71,7 @@ private fun UserInfo(name: String, email: String, courseGroup: String, school: S
 @Composable
 private fun ProfileScreenPreview() {
     ProfileScreen(
-        userName = "Mamoun",
+        userName = "El Mamoune Benmassaoud",
         school = "ESI",
         course = "Mobg5",
         group = "E11",

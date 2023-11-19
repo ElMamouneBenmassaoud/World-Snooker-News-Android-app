@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui
+package g58112.mobg5.snookernews.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import g58112.mobg5.snookernews.R
 
 @Composable
-fun LargeCenteredImage(modifier: Modifier = Modifier) {
+fun EsiCenteredImage(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize(),

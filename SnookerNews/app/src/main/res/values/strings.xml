@@ -8,4 +8,9 @@
     <string name="wrong_password">Mot de passe Incorrect</string>
     <string name="loading">Loading</string>
     <string name="loading_failed">Verify connection</string>
+    <string name="wrong_login_or_password">Wrong login or password</string>
+    <string name="authentication_error">Authentication Error</string>
+    <string name="ok">OK</string>
+    <string name="hide_password">Hide the password</string>
+    <string name="display_password">Display the password</string>
 </resources>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package g58112.mobg5.snookernews.ui
+package g58112.mobg5.snookernews.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +48,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.ui.theme.AppTheme
+import g58112.mobg5.snookernews.viewmodel.LoginViewModel
+import g58112.mobg5.snookernews.viewmodel.SnookerUiState
 
 enum class BrusselsNavScreen {
     Login,
@@ -58,9 +60,9 @@ enum class BrusselsNavScreen {
 @Composable
 fun AppScreen(
     modifier: Modifier = Modifier,
-    appViewModel: AppViewModel = viewModel()
+    loginViewModel: LoginViewModel = viewModel()
 ) {
-    val snookerUiState = appViewModel.snookerUiState
+    val snookerUiState = loginViewModel.snookerUiState
 
     val navController = rememberNavController()
 
@@ -81,16 +83,16 @@ fun AppScreen(
             ) {
                 composable(route = BrusselsNavScreen.Login.name) {
                     LoginScreen(
-                        appViewModel = appViewModel,
+                        loginViewModel = loginViewModel,
                         navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
                     )
                 }
 
                 composable(route = BrusselsNavScreen.LogoESI.name) {
-                    LargeCenteredImage()
+                    EsiCenteredImage()
                 }
                 composable(route = BrusselsNavScreen.About.name) {
-                    ProfileScreen(userName = "Mamoun", school = "ESI", course = "Mobg5", group = "E11", userEmail = appViewModel.userMail)
+                    ProfileScreen(userName = "El Mamoune Benmassaoud", school = "ESI", course = "Mobg5", group = "E11", userEmail = loginViewModel.userMail)
                 }
             }
 
@@ -117,8 +119,6 @@ fun BottomNavigationBar(navController: NavController) {
             selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
             onClick = { navController.navigate(BrusselsNavScreen.About.name) }
         )
-
-        // Vous pouvez ajouter d'autres items si nécessaire
     }
 }
 

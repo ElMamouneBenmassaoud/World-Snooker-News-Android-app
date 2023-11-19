@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui
+package g58112.mobg5.snookernews.viewmodel.state
 
 data class AppUiState(
     val isEmailValidationAsked: Boolean = false,
