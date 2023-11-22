@@ -1,4 +1,4 @@
-package com.example.marsphotos.network
+package g58112.mobg5.snookernews.network
 
 import kotlinx.serialization.Serializable
 

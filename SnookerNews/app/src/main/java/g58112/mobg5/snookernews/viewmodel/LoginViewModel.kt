@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.marsphotos.network.AuthApi
-import com.example.marsphotos.network.LoginBody
+import g58112.mobg5.snookernews.network.AuthApi
+import g58112.mobg5.snookernews.network.AuthResponse
+import g58112.mobg5.snookernews.network.LoginBody
 import g58112.mobg5.snookernews.viewmodel.state.AppUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,6 +50,9 @@ class LoginViewModel : ViewModel() {
     var userMail by mutableStateOf("")
 
     var userPassword by mutableStateOf("")
+
+    private val _authData = MutableLiveData<AuthResponse>()
+    val authData: LiveData<AuthResponse> = _authData
 
     init {
         resetEmail()
@@ -113,6 +119,8 @@ class LoginViewModel : ViewModel() {
                 snookerUiState = SnookerUiState.Success
 
                 if (response.isSuccessful) {
+                    _authData.value = response.body()
+
                     Log.d("Auth", "authenticate: Success")
                     _uiState.update { currentState ->
                         currentState.copy(
@@ -134,6 +142,7 @@ class LoginViewModel : ViewModel() {
                 }
                 _uiState.update { currentState -> currentState.copy(isEmailValidationAsked = true) }
             } catch (e: Exception) {
+                Log.d("Auth", "authenticateException: ${e.message}")
                 snookerUiState = SnookerUiState.Error
             }
         }

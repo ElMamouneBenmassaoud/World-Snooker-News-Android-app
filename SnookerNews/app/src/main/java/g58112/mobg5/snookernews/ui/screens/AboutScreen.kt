@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,7 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewmodel.compose.viewModel
 import g58112.mobg5.snookernews.R
+import g58112.mobg5.snookernews.network.AuthResponse
+import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 
 @Composable
 fun ProfileScreen(
@@ -28,7 +33,8 @@ fun ProfileScreen(
     school: String,
     course: String,
     group: String,
-    userEmail: String
+    userEmail: String,
+    authData: AuthResponse? = null,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         Column(
@@ -39,10 +45,22 @@ fun ProfileScreen(
         ) {
             ProfileImage()
 
-            UserInfo(userName, userEmail, "$group - $course", school)
+            if (authData != null) {
+                authData?.let {
+                    UserInfo(
+                        name = userName,
+                        email = userEmail,
+                        courseGroup = "$group - $course",
+                        createdAt = "${it.createdAt}",
+                        expiresAt = "${it.expiresAt}",
+                        school = school
+                    )
+                }
+            }
         }
     }
 }
+
 
 @Composable
 private fun ProfileImage() {
@@ -56,7 +74,14 @@ private fun ProfileImage() {
 }
 
 @Composable
-private fun UserInfo(name: String, email: String, courseGroup: String, school: String) {
+private fun UserInfo(
+    name: String,
+    email: String,
+    courseGroup: String,
+    createdAt: String,
+    expiresAt: String,
+    school: String
+) {
     Spacer(modifier = Modifier.height(50.dp))
     Text(text = name, textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyLarge)
     Spacer(modifier = Modifier.height(8.dp))
@@ -65,6 +90,14 @@ private fun UserInfo(name: String, email: String, courseGroup: String, school: S
     Text(text = courseGroup, style = MaterialTheme.typography.bodySmall)
     Spacer(modifier = Modifier.height(8.dp))
     Text(text = school, style = MaterialTheme.typography.bodySmall)
+    Spacer(modifier = Modifier.height(20.dp))
+    Text(
+        text = "Data retrieved from the authentication request:",
+        style = MaterialTheme.typography.bodySmall
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(text = createdAt, style = MaterialTheme.typography.bodySmall)
+    Text(text = expiresAt, style = MaterialTheme.typography.bodySmall)
 }
 
 @Preview(showBackground = true)
@@ -75,6 +108,6 @@ private fun ProfileScreenPreview() {
         school = "ESI",
         course = "Mobg5",
         group = "E11",
-        userEmail = "58112@etu.he2b.be"
+        userEmail = "58112@etu.he2b.be",
     )
 }

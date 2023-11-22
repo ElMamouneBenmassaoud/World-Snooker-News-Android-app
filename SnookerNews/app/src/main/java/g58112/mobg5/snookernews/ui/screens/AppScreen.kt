@@ -32,6 +32,7 @@ import androidx.navigation.compose.NavHost
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -92,7 +93,15 @@ fun AppScreen(
                     EsiCenteredImage()
                 }
                 composable(route = BrusselsNavScreen.About.name) {
-                    ProfileScreen(userName = "El Mamoune Benmassaoud", school = "ESI", course = "Mobg5", group = "E11", userEmail = loginViewModel.userMail)
+                    val authData = rememberUpdatedState(loginViewModel.authData.value)
+                    ProfileScreen(
+                        userName = "El Mamoune Benmassaoud",
+                        school = "ESI",
+                        course = "Mobg5",
+                        group = "E11",
+                        userEmail = loginViewModel.userMail,
+                        authData = authData.value
+                    )
                 }
             }
 
@@ -107,14 +116,14 @@ fun AppScreen(
 fun BottomNavigationBar(navController: NavController) {
     NavigationBar {
         NavigationBarItem(
-            icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+            icon = { Icon(Icons.Filled.Home, contentDescription = "Home Icon") },
             label = { Text("Home") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.LogoESI.name,
             onClick = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
         )
 
         NavigationBarItem(
-            icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+            icon = { Icon(Icons.Filled.Info, contentDescription = "Info icon") },
             label = { Text("About") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
             onClick = { navController.navigate(BrusselsNavScreen.About.name) }
