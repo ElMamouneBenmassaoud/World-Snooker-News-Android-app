@@ -237,8 +237,7 @@ private fun AppLayout(
 
 @Composable
 private fun ErrorDialog(
-    onDismissRequest: () -> Unit,
-    modifier: Modifier = Modifier
+    onDismissRequest: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = { onDismissRequest },

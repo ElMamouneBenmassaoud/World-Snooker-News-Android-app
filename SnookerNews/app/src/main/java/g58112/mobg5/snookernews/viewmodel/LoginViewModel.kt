@@ -28,6 +28,11 @@ sealed interface SnookerUiState {
  * ViewModel for managing UI state and interactions in the Snooker app.
  */
 class LoginViewModel : ViewModel() {
+
+    /**
+     * En déclarant private set après la déclaration d'une propriété, cela signifie que cette propriété
+     * peut être lue de l'extérieur de la classe, mais elle ne peut être modifiée qu'à l'intérieur de cette même classe.
+     */
     var snookerUiState: SnookerUiState by mutableStateOf(SnookerUiState.Success)
         private set
 

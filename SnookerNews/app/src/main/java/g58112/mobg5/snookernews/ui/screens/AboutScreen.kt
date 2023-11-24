@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,11 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewmodel.compose.viewModel
 import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.network.AuthResponse
-import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 
 @Composable
 fun ProfileScreen(
@@ -45,19 +41,37 @@ fun ProfileScreen(
         ) {
             ProfileImage()
 
-            if (authData != null) {
-                authData?.let {
-                    UserInfo(
-                        name = userName,
-                        email = userEmail,
-                        courseGroup = "$group - $course",
-                        createdAt = "${it.createdAt}",
-                        expiresAt = "${it.expiresAt}",
-                        school = school
-                    )
-                }
-            }
+            RetrieveData(
+                name = userName,
+                email = userEmail,
+                course = course,
+                group = group,
+                school = school,
+                authData = authData
+            )
         }
+    }
+}
+
+
+@Composable
+private fun RetrieveData(
+    name: String,
+    email: String,
+    course: String,
+    group: String,
+    school: String,
+    authData: AuthResponse?
+) {
+    authData?.let {
+        UserInfo(
+            name = name,
+            email = email,
+            courseGroup = "$group - $course",
+            createdAt = it.createdAt,
+            expiresAt = "${it.expiresAt}",
+            school = school
+        )
     }
 }
 
