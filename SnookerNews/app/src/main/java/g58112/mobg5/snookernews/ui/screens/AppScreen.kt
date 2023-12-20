@@ -19,20 +19,36 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.navigation.compose.NavHost
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,6 +65,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.presentation.login_screen.SignInScreen
+import g58112.mobg5.snookernews.presentation.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.presentation.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 import g58112.mobg5.snookernews.viewmodel.LoginViewModel
@@ -60,7 +77,6 @@ enum class BrusselsNavScreen {
     About,
     SignIn,
     SignUp,
-
 }
 
 @Composable
@@ -74,12 +90,35 @@ fun AppScreen(
 
     val currentScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
+    val currentRoute = currentScreen?.let { BrusselsNavScreen.valueOf(it) }
+
     Scaffold(
+        topBar = {
+            if (currentRoute != BrusselsNavScreen.SignIn && currentRoute != BrusselsNavScreen.SignUp) {
+                val title = currentRoute?.let { getScreenTitle(it) } ?: "Home"
+                CustomTopBar(
+                    onNavigationIconClick = { navController.popBackStack() },
+                    text = title,
+                    signInViewModel = viewModel(), // Ici, nous passons le SignInViewModel
+                    navController = navController
+                )
+            }else{
+                val offsetLogo = 0.dp
+                Image(
+                    painter = painterResource(id = R.drawable.snooker_icon_app),
+                    contentDescription = "The app logo of World Snooker News",
+                    modifier = Modifier
+                        .width(400.dp)
+                        .height(200.dp)
+                        .offset(y = -offsetLogo)
+                )
+            }
+        },
         bottomBar = {
-            if (currentScreen != BrusselsNavScreen.SignIn.name && currentScreen != BrusselsNavScreen.SignUp.name) {
+            if (currentRoute != BrusselsNavScreen.SignIn && currentRoute != BrusselsNavScreen.SignUp) {
                 BottomNavigationBar(navController = navController)
             }
-        }) { innerPadding ->
+        }){ innerPadding ->
         when (snookerUiState) {
             is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
             is SnookerUiState.Success -> NavHost(
@@ -88,11 +127,11 @@ fun AppScreen(
                 modifier = modifier.padding(innerPadding)
             ) {
                 composable(route = BrusselsNavScreen.SignIn.name) {
-                    SignInScreen(navigate = { navController.navigate(BrusselsNavScreen.SignUp.name) })
+                    SignInScreen(navController = navController)
 
                 }
                 composable(route = BrusselsNavScreen.SignUp.name) {
-                    SignUpScreen( navigate = { navController.navigate(BrusselsNavScreen.SignIn.name) })
+                    SignUpScreen(navController = navController)
 
                 }
 
@@ -145,6 +184,70 @@ fun BottomNavigationBar(navController: NavController) {
     }
 }
 
+@Composable
+fun CustomTopBar(
+    onNavigationIconClick: () -> Unit,
+    text: String,
+    signInViewModel: SignInViewModel, // Ajoutez le ViewModel comme paramètre
+    navController: NavController
+) {
+    var signOutRequested by remember { mutableStateOf(false) }
+
+    TopAppBar(
+        title = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                IconButton(onClick = onNavigationIconClick) {
+                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.Green)
+                }
+                Spacer(Modifier.weight(1f))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.outside_icon_app),
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(70.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(text = text, style = MaterialTheme.typography.titleLarge)
+
+                }
+
+                Spacer(Modifier.weight(1f))
+            }
+        },
+        actions = {
+            IconButton(onClick = { signOutRequested = true }) {
+                Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "Logout", tint = Color.Red)
+            }
+        },
+        modifier = Modifier.height(56.dp)
+    )
+
+
+    if (signOutRequested) {
+        LaunchedEffect(signOutRequested) {
+            signInViewModel.signOut()
+            navController.navigate(BrusselsNavScreen.SignIn.name) {
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true
+                }
+            }
+            signOutRequested = false // Réinitialiser l'état après la déconnexion
+        }
+    }
+}
+
+
 
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
@@ -188,6 +291,18 @@ private fun AuthorCredits(modifier: Modifier) {
         )
     }
 }
+
+fun getScreenTitle(screen: BrusselsNavScreen): String {
+    return when (screen) {
+        BrusselsNavScreen.Login -> "Login"
+        BrusselsNavScreen.LogoESI -> "Home"
+        BrusselsNavScreen.About -> "About"
+        BrusselsNavScreen.SignIn -> "Sign In"
+        BrusselsNavScreen.SignUp -> "Sign Up"
+        // Ajoutez plus de cas si nécessaire
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable

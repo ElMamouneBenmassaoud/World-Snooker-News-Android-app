@@ -4,6 +4,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import g58112.mobg5.snookernews.util.Resource
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -41,6 +42,17 @@ class AuthRepositoryImpl @Inject constructor(
             emit(Resource.Success(result))
         }.catch {
             emit(Resource.Error(it.message.toString()))
+        }
+    }
+
+    override suspend fun signOut() {
+        try {
+            firebaseAuth.signOut()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is CancellationException) {
+                throw e
+            }
         }
     }
 

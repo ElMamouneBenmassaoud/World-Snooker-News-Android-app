@@ -1,9 +1,17 @@
 package g58112.mobg5.snookernews.presentation.signup_screen
 
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -12,25 +20,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
 import g58112.mobg5.snookernews.R
+import g58112.mobg5.snookernews.data.Constant
+import g58112.mobg5.snookernews.presentation.login_screen.SignInViewModel
+import g58112.mobg5.snookernews.ui.screens.BrusselsNavScreen
 import kotlinx.coroutines.launch
 
 
 @Composable
 fun SignUpScreen(
-    navigate: () -> Unit,
-    viewModel: SignUpViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: SignUpViewModel = hiltViewModel(),
+    viewModelSignIn: SignInViewModel = hiltViewModel(),
 ) {
+
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
+            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+            try {
+                val result = account.getResult(ApiException::class.java)
+                val credentials = GoogleAuthProvider.getCredential(result.idToken, null)
+                viewModelSignIn.googleSignIn(credentials)
+            } catch (it: ApiException) {
+                print(it)
+                it.printStackTrace()
+            }
+        }
+
+
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val state = viewModel.signUpState.collectAsState(initial = null)
+    val stateSignin = viewModelSignIn.signInState.collectAsState(initial = null)
 
     Column(
         modifier = Modifier
@@ -51,45 +88,58 @@ fun SignUpScreen(
             fontSize = 15.sp, color = Color.Gray,
 
             )
-        TextField(
+        OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
+            label = { Text(stringResource(R.string.enter_your_email)) },
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Blue,
                 cursorColor = Color.Black,
-                disabledLabelColor = Color.Blue,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                disabledLabelColor = Color.Blue, unfocusedIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent
             ),
             onValueChange = {
                 email = it
 
             },
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Next
+            ),
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
-            placeholder = {
-                Text(text = "Email")
+            leadingIcon = {
+                Icon(Icons.Default.Email, contentDescription = "Email")
             }
         )
-
         Spacer(modifier = Modifier.height(16.dp))
-        TextField(
+        OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = password,
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Blue,
                 cursorColor = Color.Black,
-                disabledLabelColor = Color.Blue,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                disabledLabelColor = Color.Cyan, unfocusedIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent
             ),
             onValueChange = {
                 password = it
             },
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
-            placeholder = {
-                Text(text = "Password")
+            label = { Text(stringResource(R.string.enter_your_password)) },
+            visualTransformation =
+            if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image =
+                    if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                val description =
+                    if (passwordVisible) stringResource(R.string.hide_password) else stringResource(
+                        R.string.display_password
+                    )
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(image, description)
+                }
+            },
+            leadingIcon = {
+                Icon(Icons.Filled.Password, contentDescription = "Password")
             }
         )
         Button(
@@ -102,7 +152,7 @@ fun SignUpScreen(
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 30.dp, end = 30.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Black,
+                containerColor = Color(0xFF69D3FF),
                 contentColor = Color.White
             ),
             shape = RoundedCornerShape(15.dp)
@@ -115,23 +165,32 @@ fun SignUpScreen(
             )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            if (state.value?.isLoading == true) {
+            if (state.value?.isLoading == true || stateSignin.value?.isLoading == true) {
                 CircularProgressIndicator()
             }
         }
-        Text(
+        Button(
+            onClick = {
+                navController.navigate(BrusselsNavScreen.SignIn.name)
+            },
             modifier = Modifier
-                .padding(15.dp)
-                .clickable {
-                   navigate()
-                },
-            text = "Already Have an account? sign In",
-            fontWeight = FontWeight.Bold, color = Color.Black
-        )
+                .fillMaxWidth()
+                .padding(top = 10.dp, start = 30.dp, end = 30.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF234D24), contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(15.dp)
+        ) {
+            Text(
+                text = "Already Have an account ? ",
+                color = Color.White,
+                modifier = Modifier.padding(7.dp)
+            )
+        }
         Text(
             modifier = Modifier
                 .padding(
-                    top = 40.dp,
+                    top = 20.dp,
                 ),
             text = "Or connect with",
             fontWeight = FontWeight.Medium, color = Color.Gray
@@ -141,28 +200,29 @@ fun SignUpScreen(
                 .fillMaxWidth()
                 .padding(top = 10.dp), horizontalArrangement = Arrangement.Center
         ) {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    modifier = Modifier.size(50.dp),
-                    painter = painterResource(id = R.drawable.ic_google),
-                    contentDescription = "Google Icon", tint = Color.Unspecified
-                )
-            }
-            Spacer(modifier = Modifier.width(20.dp))
             IconButton(onClick = {
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .requestIdToken(Constant.ServerClient)
+                    .build()
+
+                val googleSingInClient = GoogleSignIn.getClient(context, gso).apply { signOut() }
+
+                launcher.launch(googleSingInClient.signInIntent)
 
             }) {
                 Icon(
-                    modifier = Modifier.size(52.dp),
-                    painter = painterResource(id = R.drawable.ic_facebook),
-                    contentDescription = "Google Icon", tint = Color.Unspecified
+                    painter = painterResource(id = R.drawable.ic_google),
+                    contentDescription = "Google Icon",
+                    modifier = Modifier.size(50.dp),
+                    tint = Color.Unspecified
                 )
             }
 
         }
     }
 
-    LaunchedEffect(key1 = state.value?.isSuccess) {
+    LaunchedEffect(key1 = state.value?.isSuccess, key2 = stateSignin.value?.isSuccess ) {
         scope.launch {
             if (state.value?.isSuccess?.isNotEmpty() == true) {
                 val success = state.value?.isSuccess
@@ -170,7 +230,7 @@ fun SignUpScreen(
             }
         }
     }
-    LaunchedEffect(key1 = state.value?.isError) {
+    LaunchedEffect(key1 = state.value?.isError, key2 = stateSignin.value?.isError) {
         scope.launch {
             if (state.value?.isError?.isNotBlank() == true) {
                 val error = state.value?.isError

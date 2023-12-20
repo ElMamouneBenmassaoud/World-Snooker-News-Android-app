@@ -19,10 +19,10 @@ class SignInViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    val _signInState = Channel<SignInState>()
+    private val _signInState = Channel<SignInState>()
     val signInState = _signInState.receiveAsFlow()
 
-    val _googleState = mutableStateOf(GoogleSignInState())
+    private val _googleState = mutableStateOf(GoogleSignInState())
     val googleState: State<GoogleSignInState> = _googleState
 
     fun googleSignIn(credential: AuthCredential) = viewModelScope.launch {
@@ -60,6 +60,10 @@ class SignInViewModel @Inject constructor(
             }
 
         }
+    }
+
+    suspend fun signOut() = viewModelScope.launch {
+        repository.signOut()
     }
 
 }

@@ -11,5 +11,7 @@ interface AuthRepository {
 
     fun googleSignIn(credential: AuthCredential): Flow<Resource<AuthResult>>
 
+    suspend fun signOut()
+
 
 }
