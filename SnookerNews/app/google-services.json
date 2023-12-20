@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "487067227836",
+    "project_id": "snookernews-becaf",
+    "storage_bucket": "snookernews-becaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487067227836:android:2ff4b98d765b0da8b262b9",
+        "android_client_info": {
+          "package_name": "g58112.mobg5.snookernews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487067227836-8ovhbh44mqoeaq442dm339frn8nd9cor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "g58112.mobg5.snookernews",
+            "certificate_hash": "67faabdcb2873dcfa977d21d9bf3f29c74438f08"
+          }
+        },
+        {
+          "client_id": "487067227836-6t6o854c26km96bfq0ot0lb4qlg14kcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYup1HeR2zLWNeBwvxMkJkNYNSwFEmWl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487067227836-6t6o854c26km96bfq0ot0lb4qlg14kcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

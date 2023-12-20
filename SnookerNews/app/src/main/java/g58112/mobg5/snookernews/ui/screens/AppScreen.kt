@@ -48,6 +48,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
+import g58112.mobg5.snookernews.presentation.login_screen.SignInScreen
+import g58112.mobg5.snookernews.presentation.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 import g58112.mobg5.snookernews.viewmodel.SnookerUiState
@@ -56,6 +58,9 @@ enum class BrusselsNavScreen {
     Login,
     LogoESI,
     About,
+    SignIn,
+    SignUp,
+
 }
 
 @Composable
@@ -71,7 +76,7 @@ fun AppScreen(
 
     Scaffold(
         bottomBar = {
-            if (currentScreen != BrusselsNavScreen.Login.name) {
+            if (currentScreen != BrusselsNavScreen.SignIn.name && currentScreen != BrusselsNavScreen.SignUp.name) {
                 BottomNavigationBar(navController = navController)
             }
         }) { innerPadding ->
@@ -79,9 +84,18 @@ fun AppScreen(
             is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
             is SnookerUiState.Success -> NavHost(
                 navController = navController,
-                startDestination = BrusselsNavScreen.Login.name,
+                startDestination = BrusselsNavScreen.SignIn.name,
                 modifier = modifier.padding(innerPadding)
             ) {
+                composable(route = BrusselsNavScreen.SignIn.name) {
+                    SignInScreen(navigate = { navController.navigate(BrusselsNavScreen.SignUp.name) })
+
+                }
+                composable(route = BrusselsNavScreen.SignUp.name) {
+                    SignUpScreen( navigate = { navController.navigate(BrusselsNavScreen.SignIn.name) })
+
+                }
+
                 composable(route = BrusselsNavScreen.Login.name) {
                     LoginScreen(
                         loginViewModel = loginViewModel,

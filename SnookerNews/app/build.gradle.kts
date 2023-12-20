@@ -1,7 +1,12 @@
+
 plugins {
     id("com.android.application")
+
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -38,6 +43,14 @@ android {
         jvmTarget = "1.8"
         freeCompilerArgs += "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
     }
+
+// Apply jvmTarget to all Kotlin compile tasks
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
     buildFeatures {
         compose = true
     }
@@ -64,6 +77,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     implementation("androidx.navigation:navigation-compose:2.5.3")
+
+    implementation ("androidx.compose.ui:ui:\"1.1.1\"")
+    implementation ("androidx.compose.ui:ui-tooling-preview:\"1.1.1\"")
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     // Retrofit with Kotlin serialization Converter
@@ -75,6 +91,14 @@ dependencies {
     implementation ("androidx.compose.material:material-icons-core")
     implementation ("androidx.compose.material:material-icons-extended")
 
+    implementation ("com.google.dagger:hilt-android:2.44")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //Google auth dependency
+    implementation ("com.google.android.gms:play-services-auth:20.4.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
