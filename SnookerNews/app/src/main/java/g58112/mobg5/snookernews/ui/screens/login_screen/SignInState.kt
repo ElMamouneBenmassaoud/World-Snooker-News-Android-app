@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.presentation.login_screen
+package g58112.mobg5.snookernews.ui.screens.login_screen
 
 data class SignInState(
     val isLoading: Boolean = false,

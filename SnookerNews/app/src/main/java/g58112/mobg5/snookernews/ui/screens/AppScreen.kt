@@ -64,9 +64,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
-import g58112.mobg5.snookernews.presentation.login_screen.SignInScreen
-import g58112.mobg5.snookernews.presentation.login_screen.SignInViewModel
-import g58112.mobg5.snookernews.presentation.signup_screen.SignUpScreen
+import g58112.mobg5.snookernews.ui.screens.login_screen.SignInScreen
+import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
+import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
+import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 import g58112.mobg5.snookernews.viewmodel.SnookerUiState
@@ -102,7 +103,7 @@ fun AppScreen(
                     signInViewModel = viewModel(), // Ici, nous passons le SignInViewModel
                     navController = navController
                 )
-            }else{
+            } else {
                 val offsetLogo = 0.dp
                 Image(
                     painter = painterResource(id = R.drawable.snooker_icon_app),
@@ -118,7 +119,7 @@ fun AppScreen(
             if (currentRoute != BrusselsNavScreen.SignIn && currentRoute != BrusselsNavScreen.SignUp) {
                 BottomNavigationBar(navController = navController)
             }
-        }){ innerPadding ->
+        }) { innerPadding ->
         when (snookerUiState) {
             is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
             is SnookerUiState.Success -> NavHost(
@@ -146,15 +147,7 @@ fun AppScreen(
                     EsiCenteredImage()
                 }
                 composable(route = BrusselsNavScreen.About.name) {
-                    val authData = rememberUpdatedState(loginViewModel.authData.value)
-                    ProfileScreen(
-                        userName = "El Mamoune Benmassaoud",
-                        school = "ESI",
-                        course = "Mobg5",
-                        group = "E11",
-                        userEmail = loginViewModel.userMail,
-                        authData = authData.value
-                    )
+                    UserProfileScreen()
                 }
             }
 
@@ -204,7 +197,11 @@ fun CustomTopBar(
             ) {
 
                 IconButton(onClick = onNavigationIconClick) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.Green)
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back",
+                        tint = Color.Green
+                    )
                 }
                 Spacer(Modifier.weight(1f))
 
@@ -227,7 +224,11 @@ fun CustomTopBar(
         },
         actions = {
             IconButton(onClick = { signOutRequested = true }) {
-                Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "Logout", tint = Color.Red)
+                Icon(
+                    imageVector = Icons.Default.ExitToApp,
+                    contentDescription = "Logout",
+                    tint = Color.Red
+                )
             }
         },
         modifier = Modifier.height(56.dp)
@@ -246,7 +247,6 @@ fun CustomTopBar(
         }
     }
 }
-
 
 
 @Composable

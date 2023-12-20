@@ -1,10 +1,10 @@
-package g58112.mobg5.snookernews.presentation.signup_screen
+package g58112.mobg5.snookernews.ui.screens.signup_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import g58112.mobg5.snookernews.data.AuthRepository
-import g58112.mobg5.snookernews.presentation.login_screen.SignInState
+import g58112.mobg5.snookernews.ui.screens.login_screen.SignInState
 import g58112.mobg5.snookernews.util.Resource
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

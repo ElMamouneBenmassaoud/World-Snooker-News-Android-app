@@ -11,7 +11,7 @@ plugins {
 
 android {
     namespace = "g58112.mobg5.snookernews"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "g58112.mobg5.snookernews"
@@ -93,6 +93,7 @@ dependencies {
 
     implementation ("com.google.dagger:hilt-android:2.44")
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("androidx.compose.ui:ui-android:1.5.4")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
@@ -101,6 +102,9 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.4.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+
+    implementation ("androidx.compose.runtime:runtime-livedata:1.0.0-beta01")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
