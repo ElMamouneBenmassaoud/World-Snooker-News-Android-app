@@ -8,9 +8,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.common.api.internal.ApiKey
 import g58112.mobg5.snookernews.network.AuthApi
 import g58112.mobg5.snookernews.network.AuthResponse
 import g58112.mobg5.snookernews.network.LoginBody
+import g58112.mobg5.snookernews.util.Constant.API_KEY
 import g58112.mobg5.snookernews.viewmodel.state.AppUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -115,40 +117,23 @@ class LoginViewModel : ViewModel() {
     fun authenticate(email: String, password: String) {
         viewModelScope.launch {
             try {
-                snookerUiState = SnookerUiState.Loading
+
                 val response = AuthApi.retrofitService.authenticate(
-                    contentType = "application/json",
-                    apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuc3Jpdm54bGVlcWR0YnloZnR2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5NzE0MDI2MSwiZXhwIjoyMDEyNzE2MjYxfQ.jgJ49-c9Z8iPQnLVTnPlfRZpKwyBKht-OY8wMTceSiM",
-                    loginBody = LoginBody(email.trim(), password)
+                    apiKey = API_KEY
                 )
-                snookerUiState = SnookerUiState.Success
+
 
                 if (response.isSuccessful) {
                     _authData.value = response.body()
 
-                    Log.d("Auth", "authenticate: Success")
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isMailWrong = false,
-                            isPasswordWrong = false
-                        )
-                    }
-                    authError = false
+                    Log.d("Auth", "authenticate: Success ${response.body()}")
+
+
                 } else {
                     Log.d("Auth", "authenticate: Failure")
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isMailWrong = true,
-                            isPasswordWrong = true
-                        )
-                    }
-                    updateUserPassword("")
-                    authError = true
                 }
-                _uiState.update { currentState -> currentState.copy(isEmailValidationAsked = true) }
             } catch (e: Exception) {
                 Log.d("Auth", "authenticateException: ${e.message}")
-                snookerUiState = SnookerUiState.Error
             }
         }
     }

@@ -5,9 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AuthResponse(
-    @SerialName(value = "expires_at")
-    val expiresAt: Int,
-
-    @SerialName(value = "token_type")
-    val createdAt: String
+    @SerialName("generated_at") val generatedAt: String,
 )

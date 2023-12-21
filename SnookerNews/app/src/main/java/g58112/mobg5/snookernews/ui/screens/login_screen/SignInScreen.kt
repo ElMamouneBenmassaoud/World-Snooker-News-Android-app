@@ -4,11 +4,8 @@ package g58112.mobg5.snookernews.ui.screens.login_screen
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -17,7 +14,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -43,13 +39,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import g58112.mobg5.snookernews.R
-import g58112.mobg5.snookernews.data.Constant.ServerClient
+import g58112.mobg5.snookernews.util.Constant.ServerClient
 import g58112.mobg5.snookernews.ui.screens.BrusselsNavScreen
-import g58112.mobg5.snookernews.ui.screens.LoginScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
-import kotlin.text.Typography
 
 @Composable
 fun SignInScreen(

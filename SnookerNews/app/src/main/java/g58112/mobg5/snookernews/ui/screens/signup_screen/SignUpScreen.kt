@@ -3,7 +3,6 @@ package g58112.mobg5.snookernews.ui.screens.signup_screen
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -34,7 +33,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import g58112.mobg5.snookernews.R
-import g58112.mobg5.snookernews.data.Constant
+import g58112.mobg5.snookernews.util.Constant
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.ui.screens.BrusselsNavScreen
 import kotlinx.coroutines.launch
@@ -268,6 +267,7 @@ fun SignUpScreen(
             if (state.value?.isSuccess?.isNotEmpty() == true) {
                 val success = state.value?.isSuccess
                 Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
+                navController.navigate(BrusselsNavScreen.SignIn.name)
             }
         }
     }

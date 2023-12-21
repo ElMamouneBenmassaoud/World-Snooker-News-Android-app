@@ -33,6 +33,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.TableChart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -67,6 +68,7 @@ import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInScreen
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
+import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 import g58112.mobg5.snookernews.viewmodel.LoginViewModel
@@ -76,6 +78,7 @@ enum class BrusselsNavScreen {
     Login,
     LogoESI,
     About,
+    Rankings,
     SignIn,
     SignUp,
 }
@@ -136,6 +139,10 @@ fun AppScreen(
 
                 }
 
+                composable(route = BrusselsNavScreen.Rankings.name) {
+                    RankingScreen()
+                }
+
                 composable(route = BrusselsNavScreen.Login.name) {
                     LoginScreen(
                         loginViewModel = loginViewModel,
@@ -173,6 +180,13 @@ fun BottomNavigationBar(navController: NavController) {
             label = { Text("About") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
             onClick = { navController.navigate(BrusselsNavScreen.About.name) }
+        )
+
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.TableChart, contentDescription = "Ranking icon") },
+            label = { Text("About") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
+            onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
         )
     }
 }
@@ -299,6 +313,7 @@ fun getScreenTitle(screen: BrusselsNavScreen): String {
         BrusselsNavScreen.About -> "About"
         BrusselsNavScreen.SignIn -> "Sign In"
         BrusselsNavScreen.SignUp -> "Sign Up"
+        BrusselsNavScreen.Rankings -> "Rankings"
         // Ajoutez plus de cas si nécessaire
     }
 }

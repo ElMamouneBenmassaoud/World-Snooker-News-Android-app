@@ -1,16 +1,17 @@
 package g58112.mobg5.snookernews.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import g58112.mobg5.snookernews.util.Constant.BASE_URL
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 
-private const val BASE_URL =
-    "https://dnsrivnxleeqdtbyhftv.supabase.co/"
 
 // Configuration JSON pour ignorer les clés inconnues lors de la désérialisation
 
@@ -25,11 +26,9 @@ private val retrofit = Retrofit.Builder()
 
 // Interface définissant les méthodes pour communiquer avec l'API.
 interface AuthApiService {
-    @POST("auth/v1/token?grant_type=password")
+    @GET("snooker/trial/v2/en/rankings.json")
     suspend fun authenticate(
-        @Header("Content-Type") contentType: String,
-        @Header("apikey") apiKey: String,
-        @Body loginBody: LoginBody
+        @Query("api_key") apiKey: String,
     ): Response<AuthResponse> // Type de retour Response<Unit> indiquant qu'on attend une réponse mais sans traitement du corps.
 }
 
