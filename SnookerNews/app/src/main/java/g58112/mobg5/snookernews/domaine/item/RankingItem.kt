@@ -1,6 +1,8 @@
 package g58112.mobg5.snookernews.domaine.item
 
 import g58112.mobg5.snookernews.data.remote.model.CompetitorRanking
+import g58112.mobg5.snookernews.data.remote.model.CompetitorRankingX
+import g58112.mobg5.snookernews.data.remote.model.Ranking
 
 data class RankingItem (
     val id: String,
@@ -10,10 +12,14 @@ data class RankingItem (
     val prizeMoney: Int
 )
 
-fun CompetitorRanking.toRankingItem() = RankingItem(
-    id = competitor.id,
-    name = competitor.name,
-    abbreviation = competitor.abbreviation,
-    rank = rank,
-    prizeMoney = prizeMoney
-)
+fun Ranking.toRankingItem(): List<RankingItem> {
+    return this.competitor_rankings.map { competitorRanking ->
+        RankingItem(
+            id = competitorRanking.competitor.id,
+            name = competitorRanking.competitor.name,
+            abbreviation = competitorRanking.competitor.abbreviation,
+            rank = competitorRanking.rank,
+            prizeMoney = competitorRanking.prize_money
+        )
+    }
+}

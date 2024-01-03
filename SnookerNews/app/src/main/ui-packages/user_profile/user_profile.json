@@ -1,0 +1,877 @@
+{
+  "name": "user_profile",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "klNHYCJWLPdPCL7XVoY5nO",
+    "node": "84:243",
+    "version": "4901310278",
+    "component-id": "b4228af1b0a190d37c317dc80a687f950e1734b8"
+  },
+  "default": "UserProfile",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 314"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 315"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 316"
+      },
+      {
+        "type": "text",
+        "id": "Welcome to your profile"
+      },
+      {
+        "type": "vector",
+        "id": "Ellipse 3"
+      },
+      {
+        "type": "text",
+        "id": "Informations"
+      },
+      {
+        "type": "vector",
+        "id": "Line 1"
+      },
+      {
+        "type": "text",
+        "id": "Favoris"
+      },
+      {
+        "type": "vector",
+        "id": "Line 4"
+      },
+      {
+        "type": "image",
+        "id": "Profile_Placeholder 1"
+      },
+      {
+        "type": "group",
+        "id": "Buttons"
+      },
+      {
+        "type": "group",
+        "id": "Buttons1"
+      },
+      {
+        "type": "text",
+        "id": "+24500000000"
+      },
+      {
+        "type": "text",
+        "id": "Provide"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "image",
+        "id": "email 1"
+      },
+      {
+        "type": "text",
+        "id": "Email"
+      },
+      {
+        "type": "text",
+        "id": "58112@etu.he2b.be"
+      },
+      {
+        "type": "text",
+        "id": "Created at"
+      },
+      {
+        "type": "text",
+        "id": "58112@etu.he2b.be1"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      },
+      {
+        "type": "text",
+        "id": "Label"
+      },
+      {
+        "type": "text",
+        "id": "Label1"
+      }
+    ],
+    "modes": {
+      "UserProfile": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 314",
+              "Rectangle 315",
+              "Rectangle 316",
+              "Welcome to your profile",
+              "Ellipse 3",
+              "Informations",
+              "Line 1",
+              "Favoris",
+              "Line 4",
+              "Profile_Placeholder 1",
+              "Buttons",
+              "Buttons1",
+              "+24500000000",
+              "Provide",
+              "Vector",
+              "email 1",
+              "Email",
+              "58112@etu.he2b.be",
+              "Created at",
+              "58112@etu.he2b.be1",
+              "Vector1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 314",
+            "margin": {
+              "left": "19.0",
+              "top": "268.0",
+              "right": "0.0361328125",
+              "bottom": "275.0"
+            },
+            "border-radius": "29.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_314.svg"
+          },
+          {
+            "id": "Rectangle 315",
+            "margin": {
+              "left": "19.0",
+              "top": "349.0",
+              "right": "0.0361328125",
+              "bottom": "194.0"
+            },
+            "border-radius": "29.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_315.svg"
+          },
+          {
+            "id": "Rectangle 316",
+            "margin": {
+              "left": "19.0",
+              "top": "427.0",
+              "right": "0.0361328125",
+              "bottom": "116.0"
+            },
+            "border-radius": "29.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_316.svg"
+          },
+          {
+            "id": "Welcome to your profile",
+            "margin": {
+              "left": "95.0",
+              "top": "148.0",
+              "right": "42.0361328125",
+              "bottom": "428.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "167.28110599078343",
+              "saturation": "0.9954128440366973",
+              "value": "0.8549019607843137"
+            },
+            "text-content": "Welcome to your profile",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Ellipse 3",
+            "margin": {
+              "left": "209.0",
+              "top": "22.0",
+              "right": "130.0361328125",
+              "bottom": "569.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "ellipse_3.svg"
+          },
+          {
+            "id": "Informations",
+            "margin": {
+              "left": "27.01806640625",
+              "top": "210.0",
+              "right": "231.01806640625",
+              "bottom": "381.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "167.28110599078343",
+              "saturation": "0.9954128440366973",
+              "value": "0.8549019607843137"
+            },
+            "text-content": "Informations",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Line 1",
+            "margin": {
+              "left": "12.0",
+              "top": "238.5",
+              "bottom": "371.5"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "line_1.svg"
+          },
+          {
+            "id": "Favoris",
+            "margin": {
+              "left": "16.01806640625",
+              "top": "513.0",
+              "right": "284.01806640625",
+              "bottom": "78.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "167.28110599078343",
+              "saturation": "0.9954128440366973",
+              "value": "0.8549019607843137"
+            },
+            "text-content": "Favoris",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Line 4",
+            "margin": {
+              "left": "1.0",
+              "top": "541.5",
+              "right": "11.0",
+              "bottom": "68.5"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "line_4.svg"
+          },
+          {
+            "id": "Profile_Placeholder 1",
+            "margin": {
+              "left": "113.0",
+              "right": "93.0361328125",
+              "bottom": "479.0"
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "-2.7755575615628914e-17",
+                "0.0"
+              ],
+              [
+                "2.7755575615628914e-17",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "profile_placeholder_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Buttons",
+            "padding": {
+              "left": "48.0",
+              "top": "12.0",
+              "right": "48.0",
+              "bottom": "12.0"
+            },
+            "margin": {
+              "left": "27.0",
+              "top": "562.0",
+              "right": "192.0361328125"
+            },
+            "border-radius": "8.0",
+            "tap-handler": "$on click player",
+            "relative-transform": [
+              [
+                "1.0",
+                "-2.7755575615628914e-17",
+                "0.0"
+              ],
+              [
+                "2.7755575615628914e-17",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Label"
+            ],
+            "item-spacing": "16.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "61.111111111111114",
+              "saturation": "0.8059701492537313",
+              "value": "0.788235294117647"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Buttons1",
+            "padding": {
+              "left": "48.0",
+              "top": "12.0",
+              "right": "48.0",
+              "bottom": "12.0"
+            },
+            "margin": {
+              "left": "200.5",
+              "top": "562.0",
+              "right": "18.5361328125"
+            },
+            "border-radius": "8.0",
+            "tap-handler": "$on click tournois",
+            "relative-transform": [
+              [
+                "1.0",
+                "-2.7755575615628914e-17",
+                "0.0"
+              ],
+              [
+                "2.7755575615628914e-17",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Label1"
+            ],
+            "item-spacing": "16.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "115.35714285714286",
+              "saturation": "0.8195121951219512",
+              "value": "0.803921568627451"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "+24500000000",
+            "margin": {
+              "left": "199.0",
+              "top": "372.0",
+              "right": "39.0361328125",
+              "bottom": "219.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "$provide",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Provide",
+            "margin": {
+              "left": "95.0",
+              "top": "372.0",
+              "right": "203.0361328125",
+              "bottom": "219.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Provide",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": "39.0",
+              "top": "438.0",
+              "right": "291.0361328125",
+              "bottom": "135.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "email 1",
+            "margin": {
+              "top": "276.0",
+              "right": "260.0361328125",
+              "bottom": "283.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "2.220446049250313e-15"
+              }
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "5.6233657100375944e-18",
+                "0.0"
+              ],
+              [
+                "4.675992445758162e-18",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "email_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Email",
+            "margin": {
+              "left": "98.0",
+              "top": "294.0",
+              "right": "217.0361328125",
+              "bottom": "301.0"
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "5.6233657100375944e-18",
+                "0.0"
+              ],
+              [
+                "4.675992445758162e-18",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Email ",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "58112@etu.he2b.be",
+            "margin": {
+              "left": "192.0",
+              "top": "294.0",
+              "right": "14.0361328125",
+              "bottom": "301.0"
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "5.6233657100375944e-18",
+                "0.0"
+              ],
+              [
+                "4.675992445758162e-18",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "$email",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Created at",
+            "margin": {
+              "left": "89.0",
+              "top": "449.0",
+              "right": "179.0361328125",
+              "bottom": "138.0"
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "5.6233657100375944e-18",
+                "0.0"
+              ],
+              [
+                "4.675992445758162e-18",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Created at",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "58112@etu.he2b.be1",
+            "margin": {
+              "left": "192.0",
+              "top": "449.0",
+              "right": "14.0361328125",
+              "bottom": "146.0"
+            },
+            "relative-transform": [
+              [
+                "1.0",
+                "5.6233657100375944e-18",
+                "0.0"
+              ],
+              [
+                "4.675992445758162e-18",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "$created at",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Vector1",
+            "margin": {
+              "left": "36.0",
+              "top": "363.0",
+              "right": "289.0361328125",
+              "bottom": "209.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          },
+          {
+            "id": "Label",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Players",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "letter-spacing": "0.028000000417232516",
+            "line-height": "1.7142857360839843",
+            "typeface": "Inder"
+          },
+          {
+            "id": "Label1",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Tournois",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "letter-spacing": "0.028000000417232516",
+            "line-height": "1.7142857360839843",
+            "typeface": "Inder"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on click player": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on click tournois": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "provide": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "email": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "created at": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "UserProfile",
+      "size": {
+        "width": 358.0361328125,
+        "height": 610.0
+      },
+      "parameters": {
+        "provide": "+24500000000",
+        "email": "58112@etu.he2b.be",
+        "created at": "58112@etu.he2b.be"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

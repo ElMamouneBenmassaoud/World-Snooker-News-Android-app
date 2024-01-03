@@ -5,5 +5,5 @@ object Constant {
 
     const val API_KEY = "9c86wfau4xegbm5q2s2d4j6s"
     const val BASE_URL = "https://api.sportradar.us/snooker/trial/v2/en/"
-    const val RANKING_ENDPOINT = "rankings"
+    const val RANKING_ENDPOINT = "rankings.json"
 }

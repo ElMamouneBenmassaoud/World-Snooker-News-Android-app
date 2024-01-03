@@ -1,0 +1,224 @@
+{
+  "name": "fav_buttons",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "klNHYCJWLPdPCL7XVoY5nO",
+    "node": "85:244",
+    "version": "4901310278",
+    "component-id": "29b99418db4dfc65057164659e73e710fb813e17"
+  },
+  "default": "favButtons",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "Favoris"
+      },
+      {
+        "type": "group",
+        "id": "Buttons"
+      },
+      {
+        "type": "group",
+        "id": "Buttons1"
+      },
+      {
+        "type": "text",
+        "id": "Label"
+      },
+      {
+        "type": "text",
+        "id": "Label1"
+      }
+    ],
+    "modes": {
+      "favButtons": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Favoris",
+              "Buttons",
+              "Buttons1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Favoris",
+            "margin": {
+              "left": "15.01806640625",
+              "right": "273.01806640625",
+              "bottom": "78.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "159.59514170040484",
+              "saturation": "0.9959677419354839",
+              "value": "0.9725490196078431"
+            },
+            "text-content": "Favoris",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "16.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Buttons",
+            "padding": {
+              "left": "48.0",
+              "top": "12.0",
+              "right": "48.0",
+              "bottom": "12.0"
+            },
+            "margin": {
+              "left": "26.0",
+              "top": "49.0",
+              "right": "181.0361328125"
+            },
+            "border-radius": "8.0",
+            "tap-handler": "$on click players",
+            "relative-transform": [
+              [
+                "1.0",
+                "-2.7755575615628914e-17",
+                "0.0"
+              ],
+              [
+                "2.7755575615628914e-17",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Label"
+            ],
+            "item-spacing": "16.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "61.111111111111114",
+              "saturation": "0.8059701492537313",
+              "value": "0.788235294117647"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Buttons1",
+            "padding": {
+              "left": "48.0",
+              "top": "12.0",
+              "right": "48.0",
+              "bottom": "12.0"
+            },
+            "margin": {
+              "left": "199.5",
+              "top": "49.0",
+              "right": "7.5361328125"
+            },
+            "border-radius": "8.0",
+            "tap-handler": "$on click tournois",
+            "relative-transform": [
+              [
+                "1.0",
+                "-2.7755575615628914e-17",
+                "0.0"
+              ],
+              [
+                "2.7755575615628914e-17",
+                "1.0",
+                "0.0"
+              ]
+            ],
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Label1"
+            ],
+            "item-spacing": "16.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "115.35714285714286",
+              "saturation": "0.8195121951219512",
+              "value": "0.803921568627451"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Label",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Players",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "letter-spacing": "0.028000000417232516",
+            "line-height": "1.7142857360839843",
+            "typeface": "Inder"
+          },
+          {
+            "id": "Label1",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Tournois",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "letter-spacing": "0.028000000417232516",
+            "line-height": "1.7142857360839843",
+            "typeface": "Inder"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on click players": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "on click tournois": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "favButtons",
+      "size": {
+        "width": 346.0361328125,
+        "height": 97.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

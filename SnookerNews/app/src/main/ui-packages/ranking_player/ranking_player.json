@@ -1,0 +1,395 @@
+{
+  "name": "ranking_player",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "klNHYCJWLPdPCL7XVoY5nO",
+    "node": "58:4",
+    "version": "4901310278",
+    "component-id": "3f2c5647231498f99a9cb90b2956694aa8183ecc"
+  },
+  "default": "RankingPlayer",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 310"
+      },
+      {
+        "type": "text",
+        "id": "Ronnie O’Sullivan"
+      },
+      {
+        "type": "text",
+        "id": "O’S"
+      },
+      {
+        "type": "text",
+        "id": "Prize money : 879000$"
+      },
+      {
+        "type": "text",
+        "id": "rank"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 1"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      }
+    ],
+    "modes": {
+      "RankingPlayer": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 310",
+              "Ronnie O’Sullivan",
+              "O’S",
+              "Prize money : 879000$",
+              "rank",
+              "Rectangle 1",
+              "Vector",
+              "Vector1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 310",
+            "border-radius": "8.0",
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.14901960784313725",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.0"
+              },
+              "blur": "3.0",
+              "offset-x": "2.0",
+              "offset-y": "2.0",
+              "spread": "0.0",
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "-1.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "-1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_310.svg"
+          },
+          {
+            "id": "Ronnie O’Sullivan",
+            "margin": {
+              "left": "68.0",
+              "top": "36.0",
+              "right": "68.0",
+              "bottom": "36.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.04705882352941182",
+              "value": "1.0"
+            },
+            "text-content": "$player name",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "30.0",
+            "line-height": "1.23828125",
+            "typeface": "Metal Mania"
+          },
+          {
+            "id": "O’S",
+            "margin": {
+              "left": "6.0",
+              "top": "83.0",
+              "right": "319.0",
+              "bottom": "12.0"
+            },
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.24705882352941178",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.0"
+              },
+              "blur": "4.0",
+              "offset-x": "0.0",
+              "offset-y": "4.0",
+              "spread": "0.0",
+              "blend-mode": "normal"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "500.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "50.588235294117645",
+              "saturation": "1.0",
+              "value": "1.0"
+            },
+            "text-content": "$abrv",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "15.0",
+            "line-height": "1.0666666412353516"
+          },
+          {
+            "id": "Prize money : 879000$",
+            "margin": {
+              "left": "191.0",
+              "top": "87.0",
+              "right": "9.0",
+              "bottom": "12.0"
+            },
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.24705882352941178",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.0"
+              },
+              "blur": "4.0",
+              "offset-x": "0.0",
+              "offset-y": "4.0",
+              "spread": "0.0",
+              "blend-mode": "normal"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "500.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "152.63598326359832",
+              "saturation": "0.9958333333333333",
+              "value": "0.9411764705882353"
+            },
+            "text-content": "$Prize money",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "text-size": "15.0",
+            "line-height": "1.0666666412353516"
+          },
+          {
+            "id": "rank",
+            "margin": {
+              "left": "10.0",
+              "top": "13.0",
+              "right": "306.0",
+              "bottom": "83.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "50.588235294117645",
+              "saturation": "1.0",
+              "value": "1.0"
+            },
+            "text-content": "$rank",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "19.0",
+            "line-height": "1.13330078125",
+            "typeface": "Aclonica",
+            "case": "upper"
+          },
+          {
+            "id": "Rectangle 1",
+            "border-radius": "8.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "314.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "14.0"
+              }
+            },
+            "tap-handler": "$on click",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "28.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "31.0"
+              }
+            },
+            "vector-content": "rectangle_1.svg"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": "321.004187346037",
+              "top": "21.012589580959887",
+              "right": "30.004186868135378",
+              "bottom": "85.99431168323079"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0008812059832621344"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.010650634765625"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Vector1",
+            "margin": {
+              "left": "321.98852794540113",
+              "top": "27.004305436162987",
+              "right": "31.01872951614672",
+              "bottom": "74.01087705895421"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.018195298321074915"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.00029754638671875"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "player name": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "abrv": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "Prize money": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "rank": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "on click": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "RankingPlayer",
+      "size": {
+        "width": 366.0,
+        "height": 112.0
+      },
+      "parameters": {
+        "player name": "Ronnie O’Sullivan",
+        "abrv": "O’S",
+        "Prize money": "Prize money : 879000$",
+        "rank": "150"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

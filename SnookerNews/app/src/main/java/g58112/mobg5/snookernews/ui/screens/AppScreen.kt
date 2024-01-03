@@ -68,6 +68,7 @@ import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInScreen
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
+import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingFavScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
@@ -79,8 +80,11 @@ enum class BrusselsNavScreen {
     LogoESI,
     About,
     Rankings,
+    Tournois,
     SignIn,
     SignUp,
+    RankingFav,
+    TournoisFav,
 }
 
 @Composable
@@ -143,18 +147,15 @@ fun AppScreen(
                     RankingScreen()
                 }
 
-                composable(route = BrusselsNavScreen.Login.name) {
-                    LoginScreen(
-                        loginViewModel = loginViewModel,
-                        navigate = { navController.navigate(BrusselsNavScreen.LogoESI.name) }
-                    )
-                }
-
                 composable(route = BrusselsNavScreen.LogoESI.name) {
-                    EsiCenteredImage()
+                    SnookerCenteredImage()
                 }
                 composable(route = BrusselsNavScreen.About.name) {
-                    UserProfileScreen()
+                    UserProfileScreen(navController = navController)
+                }
+
+                composable(route = BrusselsNavScreen.RankingFav.name) {
+                    RankingFavScreen()
                 }
             }
 
@@ -184,7 +185,7 @@ fun BottomNavigationBar(navController: NavController) {
 
         NavigationBarItem(
             icon = { Icon(Icons.Filled.TableChart, contentDescription = "Ranking icon") },
-            label = { Text("About") },
+            label = { Text("Rankings") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
             onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
         )
@@ -229,7 +230,7 @@ fun CustomTopBar(
                         modifier = Modifier.size(70.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = text, style = MaterialTheme.typography.titleLarge)
+                    Text(text = text, style = MaterialTheme.typography.titleMedium)
 
                 }
 
@@ -257,7 +258,7 @@ fun CustomTopBar(
                     inclusive = true
                 }
             }
-            signOutRequested = false // Réinitialiser l'état après la déconnexion
+            signOutRequested = false
         }
     }
 }
@@ -314,7 +315,9 @@ fun getScreenTitle(screen: BrusselsNavScreen): String {
         BrusselsNavScreen.SignIn -> "Sign In"
         BrusselsNavScreen.SignUp -> "Sign Up"
         BrusselsNavScreen.Rankings -> "Rankings"
-        // Ajoutez plus de cas si nécessaire
+        BrusselsNavScreen.Tournois -> "Tournois"
+        BrusselsNavScreen.RankingFav -> "Ranking Favorites"
+        BrusselsNavScreen.TournoisFav -> "Tournois Favorites"
     }
 }
 

@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import g58112.mobg5.snookernews.R
 
 @Composable
-fun EsiCenteredImage(modifier: Modifier = Modifier) {
+fun SnookerCenteredImage(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize(),
