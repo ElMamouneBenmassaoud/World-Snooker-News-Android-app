@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface RankingApi {
 
-    @GET(RANKING_ENDPOINT) //.json
+    @GET(RANKING_ENDPOINT)
     suspend fun getRankings(
         @Query("api_key") apiKey: String,
     ): Response<test>
