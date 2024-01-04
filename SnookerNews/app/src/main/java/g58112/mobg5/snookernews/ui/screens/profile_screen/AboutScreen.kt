@@ -100,7 +100,7 @@ fun UserProfile(
                     containerColor = Color(0xFF33CE25), contentColor = Color.White
                 )
             ) {
-                Text("Tournois favoris")
+                Text("Tournaments favoris")
             }
         }
 

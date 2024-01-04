@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.data.remote.ranking.model
+package g58112.mobg5.snookernews.data.remote.modelRanking
 
 data class Ranking(
     val competitor_rankings: List<CompetitorRanking>,

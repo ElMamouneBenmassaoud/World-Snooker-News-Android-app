@@ -1,14 +1,17 @@
 package g58112.mobg5.snookernews.repo.ranking
 
-import g58112.mobg5.snookernews.data.remote.ranking.RankingService
+import android.util.Log
+import g58112.mobg5.snookernews.data.remote.ApiService
 import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import g58112.mobg5.snookernews.domaine.ranking.item.toRankingItem
 import javax.inject.Inject
 
 class RankingRepository @Inject constructor(
-    private val rankingService: RankingService
+    private val rankingService: ApiService
 ) {
     suspend fun getRankings(): List<RankingItem> {
-        return rankingService.getRankings().flatMap { it.toRankingItem() }
+        val t = rankingService.getRankings()
+        Log.d("Ranking", "RANKING REPO: ${t}")
+        return t.flatMap { it.toRankingItem() }
     }
 }

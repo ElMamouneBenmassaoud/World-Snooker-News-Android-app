@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import g58112.mobg5.snookernews.data.remote.ranking.RankingApi
+import g58112.mobg5.snookernews.data.remote.QueryApi
 import g58112.mobg5.snookernews.util.Constant.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +25,7 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun providesRankingApi(retrofit: Retrofit): RankingApi {
-        return retrofit.create(RankingApi::class.java)
+    fun providesRankingApi(retrofit: Retrofit): QueryApi {
+        return retrofit.create(QueryApi::class.java)
     }
 }

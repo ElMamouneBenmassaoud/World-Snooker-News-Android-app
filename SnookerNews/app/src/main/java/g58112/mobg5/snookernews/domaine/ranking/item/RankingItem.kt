@@ -1,6 +1,6 @@
 package g58112.mobg5.snookernews.domaine.ranking.item
 
-import g58112.mobg5.snookernews.data.remote.ranking.model.Ranking
+import g58112.mobg5.snookernews.data.remote.modelRanking.Ranking
 
 data class RankingItem (
     val id: String,

@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddLocation
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
@@ -71,6 +72,7 @@ import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingFavScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
+import g58112.mobg5.snookernews.ui.screens.tournament_screen.TournamentScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 
 enum class BrusselsNavScreen {
@@ -151,6 +153,10 @@ fun AppScreen(
             composable(route = BrusselsNavScreen.RankingFav.name) {
                 RankingFavScreen()
             }
+
+            composable(route = BrusselsNavScreen.Tournois.name) {
+                TournamentScreen()
+            }
         }
     }
 
@@ -180,6 +186,13 @@ fun BottomNavigationBar(navController: NavController) {
             label = { Text("Rankings") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
             onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
+        )
+
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.AddLocation, contentDescription = "Tournament icon") },
+            label = { Text("Tournaments") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.Tournois.name,
+            onClick = { navController.navigate(BrusselsNavScreen.Tournois.name) }
         )
     }
 }

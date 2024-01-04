@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui.screens.ranking_screen
+package g58112.mobg5.snookernews.ui.screens.tournament_screen
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -11,57 +11,56 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import g58112.mobg5.snookernews.domaine.ranking.GetRankUseCase
 import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
+import g58112.mobg5.snookernews.domaine.tournament.GetTournamentUseCase
+import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RankingViewModel @Inject constructor(
-    private val getRankUseCase: GetRankUseCase
+class TournamentViewModel @Inject constructor(
+    private val getTournamentUseCase: GetTournamentUseCase
 ) : ViewModel() {
     private val _toastMessage = mutableStateOf("")
     val toastMessage: State<String> = _toastMessage
 
-    private val _rankings = MutableStateFlow(emptyList<RankingItem>())
-    val rankings: StateFlow<List<RankingItem>> get() = _rankings
+    private val _tournaments = MutableStateFlow(emptyList<CompetitionItem>())
+    val tournament: StateFlow<List<CompetitionItem>> get() = _tournaments
+
 
     init {
-        getRankings()
+        getTournaments()
     }
 
-    private fun getRankings() {
+    private fun getTournaments() {
         viewModelScope.launch {
             try {
-                val rankings = getRankUseCase()
-                Log.d("ranking", "viewmodel: $rankings")
-
-                _rankings.value = rankings
+                val tournaments = getTournamentUseCase()
+                Log.d("TAG", "viewmodel: $tournaments")
+                _tournaments.value = tournaments
             } catch (e: Exception) {
-                print(e.message)
+                Log.e(TAG, "Error in getTournaments", e)
             }
         }
 
     }
 
-    fun addPlayerToFavorites(ranking: RankingItem) {
+    fun addTournamentToFavorites(tournament: CompetitionItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-        // Vérifie si le joueur est déjà un favori
-        db.collection("PlayerFav")
+        db.collection("TournamentFav")
             .whereEqualTo("userId", user.uid)
-            .whereEqualTo("id", ranking.id)
+            .whereEqualTo("id", tournament.id)
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
-                    // Le joueur n'est pas dans les favoris, procéder à l'ajout
-                    addPlayerToFirestore(user.uid, ranking, db)
-                    _toastMessage.value = "Joueur ajouté aux favoris."
+                    addTournamentToFirestore(user.uid, tournament, db)
+                    _toastMessage.value = "Tournoi ajouté aux favoris."
                 } else {
-                    // Le joueur est déjà dans les favoris
-                    Log.d(TAG, "Le joueur est déjà un favori.")
-                    _toastMessage.value = "Le joueur est déjà dans les favoris."
+                    Log.d(TAG, "Le tournoi est déjà un favori.")
+                    _toastMessage.value = "Le tournoi est déjà dans les favoris."
                 }
             }
             .addOnFailureListener { e ->
@@ -69,16 +68,20 @@ class RankingViewModel @Inject constructor(
             }
     }
 
-    private fun addPlayerToFirestore(userId: String, ranking: RankingItem, db: FirebaseFirestore) {
-        val player = hashMapOf(
+    private fun addTournamentToFirestore(
+        userId: String,
+        tournament: CompetitionItem,
+        db: FirebaseFirestore
+    ) {
+        val tournamentToAdd = hashMapOf(
             "userId" to userId,
-            "id" to ranking.id,
-            "name" to ranking.name,
-            "abbreviation" to ranking.abbreviation,
-            "prizeMoney" to ranking.prizeMoney,
-            "rank" to ranking.rank
+            "id" to tournament.id,
+            "name" to tournament.name,
+            "country_code" to tournament.country_code,
+            "gender" to tournament.gender,
+            "nameCategory" to tournament.nameCategory
         )
-        db.collection("PlayerFav").add(player)
+        db.collection("TournamentFav").add(tournamentToAdd)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
@@ -86,6 +89,7 @@ class RankingViewModel @Inject constructor(
                 Log.w(TAG, "Error adding document", e)
             }
     }
+
     fun clearToastMessage() {
         _toastMessage.value = ""
     }
