@@ -48,7 +48,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,6 +64,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import g58112.mobg5.snookernews.R
+import g58112.mobg5.snookernews.ui.screens.home_screen.SnookerCenteredImage
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInScreen
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
@@ -72,8 +72,6 @@ import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingFavScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
-import g58112.mobg5.snookernews.viewmodel.LoginViewModel
-import g58112.mobg5.snookernews.viewmodel.SnookerUiState
 
 enum class BrusselsNavScreen {
     Login,
@@ -89,10 +87,8 @@ enum class BrusselsNavScreen {
 
 @Composable
 fun AppScreen(
-    modifier: Modifier = Modifier,
-    loginViewModel: LoginViewModel = viewModel()
+    modifier: Modifier = Modifier
 ) {
-    val snookerUiState = loginViewModel.snookerUiState
 
     val navController = rememberNavController()
 
@@ -127,44 +123,40 @@ fun AppScreen(
                 BottomNavigationBar(navController = navController)
             }
         }) { innerPadding ->
-        when (snookerUiState) {
-            is SnookerUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
-            is SnookerUiState.Success -> NavHost(
-                navController = navController,
-                startDestination = BrusselsNavScreen.SignIn.name,
-                modifier = modifier.padding(innerPadding)
-            ) {
-                composable(route = BrusselsNavScreen.SignIn.name) {
-                    SignInScreen(navController = navController)
+        NavHost(
+            navController = navController,
+            startDestination = BrusselsNavScreen.SignIn.name,
+            modifier = modifier.padding(innerPadding)
+        ) {
+            composable(route = BrusselsNavScreen.SignIn.name) {
+                SignInScreen(navController = navController)
 
-                }
-                composable(route = BrusselsNavScreen.SignUp.name) {
-                    SignUpScreen(navController = navController)
+            }
+            composable(route = BrusselsNavScreen.SignUp.name) {
+                SignUpScreen(navController = navController)
 
-                }
-
-                composable(route = BrusselsNavScreen.Rankings.name) {
-                    RankingScreen()
-                }
-
-                composable(route = BrusselsNavScreen.LogoESI.name) {
-                    SnookerCenteredImage()
-                }
-                composable(route = BrusselsNavScreen.About.name) {
-                    UserProfileScreen(navController = navController)
-                }
-
-                composable(route = BrusselsNavScreen.RankingFav.name) {
-                    RankingFavScreen()
-                }
             }
 
-            is SnookerUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
-        }
+            composable(route = BrusselsNavScreen.Rankings.name) {
+                RankingScreen()
+            }
 
-        AuthorCredits(modifier = modifier)
+            composable(route = BrusselsNavScreen.LogoESI.name) {
+                SnookerCenteredImage()
+            }
+            composable(route = BrusselsNavScreen.About.name) {
+                UserProfileScreen(navController = navController)
+            }
+
+            composable(route = BrusselsNavScreen.RankingFav.name) {
+                RankingFavScreen()
+            }
+        }
     }
+
+    AuthorCredits(modifier = modifier)
 }
+
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

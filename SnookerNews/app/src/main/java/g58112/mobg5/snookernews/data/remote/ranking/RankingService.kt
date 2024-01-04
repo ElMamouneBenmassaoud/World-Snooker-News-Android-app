@@ -1,9 +1,6 @@
-package g58112.mobg5.snookernews.data.remote
+package g58112.mobg5.snookernews.data.remote.ranking
 
-import g58112.mobg5.snookernews.data.remote.model.CompetitorRanking
-import g58112.mobg5.snookernews.data.remote.model.CompetitorRankingX
-import g58112.mobg5.snookernews.data.remote.model.Ranking
-import g58112.mobg5.snookernews.data.remote.model.test
+import g58112.mobg5.snookernews.data.remote.ranking.model.Ranking
 import g58112.mobg5.snookernews.util.Constant.API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,10 +20,8 @@ class RankingService @Inject constructor(
 
             val rankingList = response.body()?.rankings
 
-            //logger.warning("getRankings() response: ${response.message()} ${response.code()} ${response.body()} ${response.errorBody()}")
             logger.warning("getRankings() response: $rankingList")
 
-            //emptyList()
             rankingList ?: emptyList()
         }
     }

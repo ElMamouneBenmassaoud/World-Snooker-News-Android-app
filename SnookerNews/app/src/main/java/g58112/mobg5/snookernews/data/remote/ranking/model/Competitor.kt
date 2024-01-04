@@ -1,6 +1,6 @@
-package g58112.mobg5.snookernews.data.remote.model
+package g58112.mobg5.snookernews.data.remote.ranking.model
 
-data class CompetitorX(
+data class Competitor(
     val abbreviation: String,
     val id: String,
     val name: String

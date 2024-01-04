@@ -42,7 +42,6 @@ import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.util.Constant.ServerClient
 import g58112.mobg5.snookernews.ui.screens.BrusselsNavScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
-import g58112.mobg5.snookernews.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -276,7 +275,7 @@ fun SignInScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun StartLoginScreenPreview(loginViewModel: LoginViewModel = viewModel()) {
+fun StartLoginScreenPreview() {
     val navController : NavController = rememberNavController()
     AppTheme {
         SignInScreen(navController = navController)

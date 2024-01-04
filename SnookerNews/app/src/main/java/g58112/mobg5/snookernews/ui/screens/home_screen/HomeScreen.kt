@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui.screens
+package g58112.mobg5.snookernews.ui.screens.home_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

@@ -5,15 +5,11 @@ import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import dagger.hilt.android.lifecycle.HiltViewModel
-import g58112.mobg5.snookernews.domaine.GetRankUseCase
-import g58112.mobg5.snookernews.domaine.item.RankingItem
+import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 class RankingFavViewModel @Inject constructor() : ViewModel() {
     private val _favoriteRankings = MutableStateFlow<List<RankingItem>>(emptyList())

@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import g58112.mobg5.snookernews.domaine.item.RankingItem
+import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import g58112.mobg5.snookernews.rankingplayer.RankingPlayer
 import androidx.compose.ui.platform.LocalContext
 import g58112.mobg5.snookernews.rankingplayercard.RankingPlayerCard

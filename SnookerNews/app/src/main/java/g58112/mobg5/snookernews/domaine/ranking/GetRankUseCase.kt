@@ -1,7 +1,7 @@
-package g58112.mobg5.snookernews.domaine
+package g58112.mobg5.snookernews.domaine.ranking
 
-import g58112.mobg5.snookernews.domaine.item.RankingItem
-import g58112.mobg5.snookernews.repo.RankingRepository
+import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
+import g58112.mobg5.snookernews.repo.ranking.RankingRepository
 import javax.inject.Inject
 
 class GetRankUseCase @Inject constructor(
