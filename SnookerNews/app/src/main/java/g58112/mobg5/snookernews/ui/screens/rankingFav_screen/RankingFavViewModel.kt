@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui.screens.ranking_screen
+package g58112.mobg5.snookernews.ui.screens.rankingFav_screen
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -11,6 +11,12 @@ import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+
+/**
+ * ViewModel for the Ranking Favorites Screen.
+ *
+ * This ViewModel manages the operations related to fetching, displaying, and modifying the user's favorite player rankings.
+ */
 class RankingFavViewModel @Inject constructor() : ViewModel() {
     private val _favoriteRankings = MutableStateFlow<List<RankingItem>>(emptyList())
     val favoriteRankings: StateFlow<List<RankingItem>> = _favoriteRankings
@@ -23,6 +29,11 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
         getFavorites()
     }
 
+    /**
+     * Fetches and updates the list of the user's favorite player rankings.
+     *
+     * This method retrieves the favorite player rankings from Firestore and updates the UI state accordingly.
+     */
     private fun getFavorites() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -46,6 +57,11 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
             }
     }
 
+    /**
+     * Removes a player from the user's list of favorites.
+     *
+     * @param ranking The [RankingItem] representing the player to be removed from favorites.
+     */
     fun removePlayerFromFavorites(ranking: RankingItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -63,7 +79,8 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
                         }
                         .addOnFailureListener { e ->
                             Log.w(TAG, "Erreur lors de la suppression du joueur des favoris", e)
-                            _toastMessage.value = "Erreur lors de la suppression du joueur des favoris."
+                            _toastMessage.value =
+                                "Erreur lors de la suppression du joueur des favoris."
                         }
                 }
                 getFavorites()
@@ -72,6 +89,10 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
                 Log.w(TAG, "Erreur lors de la recherche du joueur dans les favoris", e)
             }
     }
+
+    /**
+     * Clears the current toast message.
+     */
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

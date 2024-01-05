@@ -18,6 +18,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the Tournament Screen.
+ *
+ * This ViewModel handles operations related to fetching and displaying tournament data,
+ * adding tournaments to favorites, and filtering tournaments based on specific criteria.
+ *
+ * @property getTournamentUseCase The use case for fetching tournament data.
+ */
 @HiltViewModel
 class TournamentViewModel @Inject constructor(
     private val getTournamentUseCase: GetTournamentUseCase
@@ -33,6 +41,11 @@ class TournamentViewModel @Inject constructor(
         getTournaments()
     }
 
+    /**
+     * Fetches and updates the list of tournaments.
+     *
+     * This method calls the getTournamentUseCase to retrieve tournament data and updates the UI state accordingly.
+     */
     private fun getTournaments() {
         viewModelScope.launch {
             try {
@@ -45,6 +58,11 @@ class TournamentViewModel @Inject constructor(
 
     }
 
+    /**
+     * Adds a tournament to the user's list of favorites.
+     *
+     * @param tournament The [CompetitionItem] representing the tournament to be added to favorites.
+     */
     fun addTournamentToFavorites(tournament: CompetitionItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -67,6 +85,13 @@ class TournamentViewModel @Inject constructor(
             }
     }
 
+    /**
+     * Adds a tournament's details to Firestore.
+     *
+     * @param userId The user ID of the tournament.
+     * @param tournament The [CompetitionItem] details of the tournament.
+     * @param db The Firestore instance.
+     */
     private fun addTournamentToFirestore(
         userId: String,
         tournament: CompetitionItem,
@@ -89,6 +114,11 @@ class TournamentViewModel @Inject constructor(
             }
     }
 
+    /**
+     * Filters and updates the list of tournaments based on the provided name.
+     *
+     * @param name The name to filter the tournaments by.
+     */
     fun getTournamentsByName(name: String) {
         viewModelScope.launch {
             try {
@@ -102,6 +132,9 @@ class TournamentViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Clears the current toast message.
+     */
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

@@ -1,6 +1,5 @@
 package g58112.mobg5.snookernews.ui.screens.tournament_screen
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,9 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import g58112.mobg5.snookernews.component1.Component1
 import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
-import g58112.mobg5.snookernews.rankingplayercard.RankingPlayerCard
 import g58112.mobg5.snookernews.tournamentcard.TournamentCard
 
 @OptIn(ExperimentalComposeUiApi::class)

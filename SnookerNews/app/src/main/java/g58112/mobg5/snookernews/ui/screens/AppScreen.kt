@@ -69,7 +69,7 @@ import g58112.mobg5.snookernews.ui.screens.home_screen.SnookerCenteredImage
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInScreen
 import g58112.mobg5.snookernews.ui.screens.login_screen.SignInViewModel
 import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
-import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingFavScreen
+import g58112.mobg5.snookernews.ui.screens.rankingFav_screen.RankingFavScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
 import g58112.mobg5.snookernews.ui.screens.tournamentFav_screen.TournamentFavScreen

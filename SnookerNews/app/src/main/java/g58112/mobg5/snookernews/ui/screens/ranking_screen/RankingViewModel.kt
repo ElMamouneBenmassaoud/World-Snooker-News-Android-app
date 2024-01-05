@@ -16,6 +16,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the Ranking Screen.
+ *
+ * This ViewModel handles the operations related to fetching and displaying player rankings,
+ * as well as managing favorite player selections.
+ *
+ * @property getRankUseCase The use case for fetching player rankings.
+ */
 @HiltViewModel
 class RankingViewModel @Inject constructor(
     private val getRankUseCase: GetRankUseCase
@@ -30,6 +38,11 @@ class RankingViewModel @Inject constructor(
         getRankings()
     }
 
+    /**
+     * Fetches and updates the list of player rankings.
+     *
+     * This method calls the getRankUseCase to retrieve player rankings and updates the UI state accordingly.
+     */
     private fun getRankings() {
         viewModelScope.launch {
             try {
@@ -44,6 +57,11 @@ class RankingViewModel @Inject constructor(
 
     }
 
+    /**
+     * Adds a player to the user's list of favorites.
+     *
+     * @param ranking The [RankingItem] representing the player to be added to favorites.
+     */
     fun addPlayerToFavorites(ranking: RankingItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -69,6 +87,13 @@ class RankingViewModel @Inject constructor(
             }
     }
 
+    /**
+     * Adds a player's details to Firestore.
+     *
+     * @param userId The user ID of the player.
+     * @param ranking The [RankingItem] details of the player.
+     * @param db The Firestore instance.
+     */
     private fun addPlayerToFirestore(userId: String, ranking: RankingItem, db: FirebaseFirestore) {
         val player = hashMapOf(
             "userId" to userId,
@@ -87,6 +112,11 @@ class RankingViewModel @Inject constructor(
             }
     }
 
+    /**
+     * Filters and updates the list of player rankings based on the provided name.
+     *
+     * @param name The name to filter the rankings by.
+     */
     fun getRankingsByName(name: String) {
         viewModelScope.launch {
             try {
@@ -100,7 +130,9 @@ class RankingViewModel @Inject constructor(
         }
     }
 
-
+    /**
+     * Clears the current toast message.
+     */
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

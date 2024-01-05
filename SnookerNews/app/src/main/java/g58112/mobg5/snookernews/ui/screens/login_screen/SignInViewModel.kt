@@ -14,6 +14,14 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the Sign In screen.
+ *
+ * This ViewModel handles the sign-in logic for the application, including Google sign-in and regular email/password authentication.
+ * It interacts with [AuthRepository] to perform authentication operations and updates the UI state accordingly.
+ *
+ * @property repository The authentication repository used for performing sign-in operations.
+ */
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val repository: AuthRepository
@@ -25,6 +33,13 @@ class SignInViewModel @Inject constructor(
     private val _googleState = mutableStateOf(GoogleSignInState())
     val googleState: State<GoogleSignInState> = _googleState
 
+    /**
+     * Initiates the Google sign-in process.
+     *
+     * This function triggers the Google sign-in process using [AuthCredential] and updates the Google sign-in state accordingly.
+     *
+     * @param credential The authentication credentials obtained from Google Sign-In.
+     */
     fun googleSignIn(credential: AuthCredential) = viewModelScope.launch {
         repository.googleSignIn(credential).collect { result ->
             when (result) {
@@ -43,7 +58,14 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-
+    /**
+     * Logs in a user using their email and password.
+     *
+     * This function performs the sign-in operation using email and password, and updates the sign-in state based on the result.
+     *
+     * @param email The user's email address.
+     * @param password The user's password.
+     */
     fun loginUser(email: String, password: String) = viewModelScope.launch {
         repository.loginUser(email, password).collect { result ->
             when (result) {
@@ -62,6 +84,11 @@ class SignInViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Signs out the currently logged-in user.
+     *
+     * This function performs the sign-out operation and is to be called from within a coroutine.
+     */
     suspend fun signOut() = viewModelScope.launch {
         repository.signOut()
     }

@@ -186,7 +186,11 @@ fun SignInScreen(
             ),
             shape = RoundedCornerShape(15.dp)
         ) {
-            Text(text = "New User ? Sign Up", color = Color.White, modifier = Modifier.padding(7.dp))
+            Text(
+                text = "New User ? Sign Up",
+                color = Color.White,
+                modifier = Modifier.padding(7.dp)
+            )
         }
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -276,7 +280,7 @@ fun SignInScreen(
 @Preview(showBackground = true)
 @Composable
 fun StartLoginScreenPreview() {
-    val navController : NavController = rememberNavController()
+    val navController: NavController = rememberNavController()
     AppTheme {
         SignInScreen(navController = navController)
     }

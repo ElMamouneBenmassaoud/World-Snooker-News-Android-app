@@ -69,15 +69,8 @@ fun UserProfile(
         UserInfoCard(label = "Provide", value = provider)
         UserInfoCard(label = "Created at", value = creationDate)
 
-        /*
-                FavButtons(
-                    onClickPlayers = { navController.navigate(BrusselsNavScreen.RankingFav.name) },
-                    onClickTournois = { navController.navigate(BrusselsNavScreen.TournoisFav.name) })
-        */
+        Spacer(modifier = Modifier.weight(1f))
 
-        Spacer(modifier = Modifier.weight(1f)) // Utilisez le poids pour pousser les boutons vers le bas
-
-        // Boutons en bas
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
@@ -110,33 +103,6 @@ fun UserProfile(
 }
 
 @Composable
-fun CustomButtons(navController: NavController) {
-    // Bouton pour les joueurs favoris
-    Button(
-        onClick = { navController.navigate(BrusselsNavScreen.RankingFav.name) },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Blue // Couleur de fond
-        ),
-        shape = RoundedCornerShape(8.dp) // Forme arrondie des coins
-    ) {
-        Text("Joueurs favoris", color = Color.White) // Définir la couleur du texte ici
-    }
-
-    Spacer(modifier = Modifier.height(8.dp)) // Espace entre les boutons
-
-    // Bouton pour les tournois favoris
-    Button(
-        onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Green // Couleur de fond
-        ),
-        shape = RoundedCornerShape(8.dp) // Forme arrondie des coins
-    ) {
-        Text("Tournois favoris", color = Color.White) // Définir la couleur du texte ici
-    }
-}
-
-@Composable
 fun UserInfoCard(label: String, value: String) {
     Card(
         modifier = Modifier
@@ -161,7 +127,6 @@ fun UserInfoCard(label: String, value: String) {
 fun UserProfileScreen(userViewModel: UserViewModel = viewModel(), navController: NavController) {
     val user = userViewModel.firebaseUser.observeAsState().value
 
-    // Afficher les informations de l'utilisateur si disponibles
     user?.let {
         val providerId = it.providerData.joinToString(separator = ", ") { userInfo ->
             when (userInfo.providerId) {

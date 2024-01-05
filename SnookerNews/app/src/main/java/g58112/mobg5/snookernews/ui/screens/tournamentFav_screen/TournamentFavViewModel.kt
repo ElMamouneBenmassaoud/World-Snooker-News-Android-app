@@ -14,6 +14,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
+/**
+ * ViewModel for the Tournament Favorites Screen.
+ *
+ * This ViewModel manages operations related to fetching, displaying, and removing favorite tournaments.
+ */
 class TournamentFavViewModel @Inject constructor() : ViewModel() {
     private val _favoriteTournaments = MutableStateFlow<List<CompetitionItem>>(emptyList())
     val favoriteTournaments: StateFlow<List<CompetitionItem>> = _favoriteTournaments
@@ -26,6 +31,11 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
         getFavorites()
     }
 
+    /**
+     * Fetches and updates the list of the user's favorite tournaments.
+     *
+     * This method retrieves the favorite tournaments from Firestore and updates the UI state accordingly.
+     */
     private fun getFavorites() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -49,11 +59,16 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
             }
     }
 
-    fun removeTournamentFromFavorites(competitionItem : CompetitionItem) {
+    /**
+     * Removes a tournament from the user's list of favorites.
+     *
+     * @param competitionItem The [CompetitionItem] representing the tournament to be removed from favorites.
+     */
+    fun removeTournamentFromFavorites(competitionItem: CompetitionItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-            db.collection("TournamentFav")
+        db.collection("TournamentFav")
             .whereEqualTo("userId", user.uid)
             .whereEqualTo("id", competitionItem.id)
             .get()
@@ -77,6 +92,9 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
             }
     }
 
+    /**
+     * Clears the current toast message.
+     */
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

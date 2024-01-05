@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui.screens.ranking_screen
+package g58112.mobg5.snookernews.ui.screens.rankingFav_screen
 
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,7 +34,8 @@ fun RankingFavScreen() {
                 prizeMoney = "Prize Money : " + ranking.prizeMoney.toString() + "$",
                 rank = ranking.rank.toString(),
                 onClick = {
-                    Toast.makeText(context, "Joueur supprimé des favoris.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Joueur supprimé des favoris.", Toast.LENGTH_SHORT)
+                        .show()
                     rankingFavViewModel.removePlayerFromFavorites(ranking)
                 }
             )
