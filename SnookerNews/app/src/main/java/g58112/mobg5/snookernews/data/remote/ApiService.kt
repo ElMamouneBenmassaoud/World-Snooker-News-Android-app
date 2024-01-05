@@ -8,7 +8,6 @@ import g58112.mobg5.snookernews.util.Constant.API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
 class ApiService @Inject constructor(
     private val QueryApi: QueryApi
 ) {

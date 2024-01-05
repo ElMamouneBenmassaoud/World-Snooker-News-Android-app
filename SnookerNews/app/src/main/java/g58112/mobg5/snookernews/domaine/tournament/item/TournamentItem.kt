@@ -13,9 +13,7 @@ data class CompetitionItem(
 )
 
 fun TopTournamentResponse.toCompetitionItem(): List<CompetitionItem> {
-    Log.d("Tag", "ici ${this.competitions}")
     return this.competitions.map { competition ->
-        Log.d("TAG", "toCompetitionItem: ${competition.name}")
         CompetitionItem(
             id = competition.id,
             name = competition.name,

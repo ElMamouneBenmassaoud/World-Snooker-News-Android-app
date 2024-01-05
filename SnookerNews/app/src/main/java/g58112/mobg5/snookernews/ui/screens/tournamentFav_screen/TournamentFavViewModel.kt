@@ -1,4 +1,4 @@
-package g58112.mobg5.snookernews.ui.screens.ranking_screen
+package g58112.mobg5.snookernews.ui.screens.tournamentFav_screen
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -7,13 +7,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import g58112.mobg5.snookernews.data.remote.modelTournament.Competition
 import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
+import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
-class RankingFavViewModel @Inject constructor() : ViewModel() {
-    private val _favoriteRankings = MutableStateFlow<List<RankingItem>>(emptyList())
-    val favoriteRankings: StateFlow<List<RankingItem>> = _favoriteRankings
+
+class TournamentFavViewModel @Inject constructor() : ViewModel() {
+    private val _favoriteTournaments = MutableStateFlow<List<CompetitionItem>>(emptyList())
+    val favoriteTournaments: StateFlow<List<CompetitionItem>> = _favoriteTournaments
 
     private val _toastMessage = mutableStateOf("")
     val toastMessage: State<String> = _toastMessage
@@ -27,17 +30,17 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("PlayerFav")
+        db.collection("TournamentFav")
             .whereEqualTo("userId", user.uid)
             .get()
             .addOnSuccessListener { documents ->
-                _favoriteRankings.value = documents.map { doc ->
-                    RankingItem(
+                _favoriteTournaments.value = documents.map { doc ->
+                    CompetitionItem(
                         id = doc.getString("id") ?: "",
                         name = doc.getString("name") ?: "",
-                        abbreviation = doc.getString("abbreviation") ?: "",
-                        rank = doc.getLong("rank")?.toInt() ?: 0,
-                        prizeMoney = doc.getLong("prizeMoney")?.toInt() ?: 0
+                        gender = doc.getString("gender") ?: "",
+                        country_code = doc.getString("country_code") ?: "",
+                        nameCategory = doc.getString("nameCategory") ?: ""
                     )
                 }
             }
@@ -46,24 +49,25 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
             }
     }
 
-    fun removePlayerFromFavorites(ranking: RankingItem) {
+    fun removeTournamentFromFavorites(competitionItem : CompetitionItem) {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("PlayerFav")
+            db.collection("TournamentFav")
             .whereEqualTo("userId", user.uid)
-            .whereEqualTo("id", ranking.id)
+            .whereEqualTo("id", competitionItem.id)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    db.collection("PlayerFav").document(document.id).delete()
+                    db.collection("TournamentFav").document(document.id).delete()
                         .addOnSuccessListener {
                             Log.d(TAG, "Joueur supprimé avec succès des favoris.")
-                            _toastMessage.value = "Joueur supprimé des favoris."
+                            _toastMessage.value = "Tournament deleted from favorites."
                         }
                         .addOnFailureListener { e ->
                             Log.w(TAG, "Erreur lors de la suppression du joueur des favoris", e)
-                            _toastMessage.value = "Erreur lors de la suppression du joueur des favoris."
+                            _toastMessage.value =
+                                "Error when deleting tournament from favorites."
                         }
                 }
                 getFavorites()
@@ -72,6 +76,7 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
                 Log.w(TAG, "Erreur lors de la recherche du joueur dans les favoris", e)
             }
     }
+
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

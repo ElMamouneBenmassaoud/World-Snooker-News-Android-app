@@ -11,7 +11,6 @@ class TournamentRepository @Inject constructor(
 ) {
     suspend fun getTournaments(): List<CompetitionItem> {
         val tournamentResponse = tournamentService.getTournaments()
-        Log.d("TAG", "REPO:")
         return tournamentResponse?.toCompetitionItem() ?: emptyList()
     }
 }

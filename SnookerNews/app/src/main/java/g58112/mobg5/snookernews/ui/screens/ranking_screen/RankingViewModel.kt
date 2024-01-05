@@ -86,6 +86,21 @@ class RankingViewModel @Inject constructor(
                 Log.w(TAG, "Error adding document", e)
             }
     }
+
+    fun getRankingsByName(name: String) {
+        viewModelScope.launch {
+            try {
+                val filteredList = getRankUseCase().filter {
+                    it.name.contains(name, ignoreCase = true)
+                }
+                _rankings.value = filteredList
+            } catch (e: Exception) {
+                Log.e(TAG, "Error in getRankingsByName", e)
+            }
+        }
+    }
+
+
     fun clearToastMessage() {
         _toastMessage.value = ""
     }

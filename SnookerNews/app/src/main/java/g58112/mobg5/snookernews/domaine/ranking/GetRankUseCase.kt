@@ -9,7 +9,6 @@ class GetRankUseCase @Inject constructor(
     private val rankingRepository: RankingRepository
 ){
     suspend operator fun invoke() : List<RankingItem> {
-        Log.d("ranking", "invoke: UseCaseRanking")
         return rankingRepository.getRankings()
     }
 }

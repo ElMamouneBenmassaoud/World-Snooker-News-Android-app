@@ -1,0 +1,405 @@
+{
+  "name": "tournament_fav_card",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "klNHYCJWLPdPCL7XVoY5nO",
+    "node": "90:264",
+    "version": "4911154037",
+    "component-id": "5f4cc9d3964c7e67623fa4b0f9a06c1c74db01e7"
+  },
+  "default": "TournamentFavCard",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 313"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 1"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      },
+      {
+        "type": "text",
+        "id": "World Championship"
+      },
+      {
+        "type": "text",
+        "id": "International"
+      },
+      {
+        "type": "text",
+        "id": "Eng"
+      },
+      {
+        "type": "vector",
+        "id": "Line 8"
+      },
+      {
+        "type": "text",
+        "id": "men"
+      }
+    ],
+    "modes": {
+      "TournamentFavCard": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 313",
+              "Rectangle 1",
+              "Vector",
+              "Vector1",
+              "World Championship",
+              "International",
+              "Eng",
+              "Line 8",
+              "men"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 313",
+            "border-radius": "8.0",
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.14901960784313725",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.0"
+              },
+              "blur": "3.0",
+              "offset-x": "2.0",
+              "offset-y": "2.0",
+              "spread": "0.0",
+              "blend-mode": "normal"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "-1.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "-1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_313.svg"
+          },
+          {
+            "id": "Rectangle 1",
+            "margin": {
+              "left": "328.0",
+              "top": "9.0",
+              "right": "10.0",
+              "bottom": "72.0"
+            },
+            "border-radius": "8.0",
+            "tap-handler": "$on click",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_1.svg"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": "335.0042178636151",
+              "top": "16.012589580959887",
+              "right": "16.004156350557253",
+              "bottom": "90.99431168323079"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0008812059833189778"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.010650634765625"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Vector1",
+            "margin": {
+              "left": "335.98855846297926",
+              "top": "22.004305436162987",
+              "right": "17.018698998568595",
+              "bottom": "79.01087705895421"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.018164780742949915"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.00030517578125"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          },
+          {
+            "id": "World Championship",
+            "margin": {
+              "left": "4.0",
+              "top": "38.0",
+              "right": "4.0",
+              "bottom": "38.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.9686274509803922"
+            },
+            "text-content": "$name",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "25.0",
+            "line-height": "1.23828125",
+            "typeface": "Metal Mania"
+          },
+          {
+            "id": "International",
+            "margin": {
+              "left": "12.0",
+              "top": "8.0",
+              "right": "150.0",
+              "bottom": "88.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "$category name",
+            "italic": "true",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "13.0",
+            "line-height": "1.2170000076293945",
+            "typeface": "Optima"
+          },
+          {
+            "id": "Eng",
+            "margin": {
+              "left": "12.0",
+              "top": "88.0",
+              "right": "319.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "$country",
+            "italic": "true",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "13.0",
+            "line-height": "1.2170000076293945",
+            "typeface": "Optima"
+          },
+          {
+            "id": "Line 8",
+            "margin": {
+              "left": "120.0",
+              "top": "74.0",
+              "right": "120.0",
+              "bottom": "38.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "-1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "line_8.svg"
+          },
+          {
+            "id": "men",
+            "margin": {
+              "left": "274.0",
+              "top": "88.0",
+              "right": "19.0",
+              "bottom": "7.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "$gender",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "text-size": "13.0",
+            "line-height": "1.2139999683086689",
+            "typeface": "Optima"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on click": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "name": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "category name": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "country": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "gender": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "TournamentFavCard",
+      "size": {
+        "width": 366.0,
+        "height": 112.0
+      },
+      "parameters": {
+        "name": "World Championship",
+        "category name": "International",
+        "country": "Eng",
+        "gender": "men"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

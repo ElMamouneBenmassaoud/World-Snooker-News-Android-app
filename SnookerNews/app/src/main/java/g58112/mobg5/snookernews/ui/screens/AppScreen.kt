@@ -72,6 +72,7 @@ import g58112.mobg5.snookernews.ui.screens.profile_screen.UserProfileScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingFavScreen
 import g58112.mobg5.snookernews.ui.screens.ranking_screen.RankingScreen
 import g58112.mobg5.snookernews.ui.screens.signup_screen.SignUpScreen
+import g58112.mobg5.snookernews.ui.screens.tournamentFav_screen.TournamentFavScreen
 import g58112.mobg5.snookernews.ui.screens.tournament_screen.TournamentScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 
@@ -157,6 +158,10 @@ fun AppScreen(
             composable(route = BrusselsNavScreen.Tournois.name) {
                 TournamentScreen()
             }
+
+            composable(route = BrusselsNavScreen.TournoisFav.name) {
+                TournamentFavScreen()
+            }
         }
     }
 
@@ -182,17 +187,17 @@ fun BottomNavigationBar(navController: NavController) {
         )
 
         NavigationBarItem(
-            icon = { Icon(Icons.Filled.TableChart, contentDescription = "Ranking icon") },
-            label = { Text("Rankings") },
-            selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
-            onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
-        )
-
-        NavigationBarItem(
             icon = { Icon(Icons.Filled.AddLocation, contentDescription = "Tournament icon") },
             label = { Text("Tournaments") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.Tournois.name,
             onClick = { navController.navigate(BrusselsNavScreen.Tournois.name) }
+        )
+
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.TableChart, contentDescription = "Ranking icon") },
+            label = { Text("Rankings") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
+            onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
         )
     }
 }

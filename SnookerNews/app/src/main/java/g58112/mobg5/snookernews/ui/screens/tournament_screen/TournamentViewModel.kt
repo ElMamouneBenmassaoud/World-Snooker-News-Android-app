@@ -37,7 +37,6 @@ class TournamentViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val tournaments = getTournamentUseCase()
-                Log.d("TAG", "viewmodel: $tournaments")
                 _tournaments.value = tournaments
             } catch (e: Exception) {
                 Log.e(TAG, "Error in getTournaments", e)
@@ -88,6 +87,19 @@ class TournamentViewModel @Inject constructor(
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+    }
+
+    fun getTournamentsByName(name: String) {
+        viewModelScope.launch {
+            try {
+                val filteredList = getTournamentUseCase().filter {
+                    it.name?.contains(name, ignoreCase = true) ?: false
+                }
+                _tournaments.value = filteredList
+            } catch (e: Exception) {
+                Log.e(TAG, "Error in getRankingsByName", e)
+            }
+        }
     }
 
     fun clearToastMessage() {

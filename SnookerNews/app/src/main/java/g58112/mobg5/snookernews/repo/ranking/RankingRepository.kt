@@ -10,8 +10,6 @@ class RankingRepository @Inject constructor(
     private val rankingService: ApiService
 ) {
     suspend fun getRankings(): List<RankingItem> {
-        val t = rankingService.getRankings()
-        Log.d("Ranking", "RANKING REPO: ${t}")
-        return t.flatMap { it.toRankingItem() }
+        return  rankingService.getRankings().flatMap { it.toRankingItem() }
     }
 }

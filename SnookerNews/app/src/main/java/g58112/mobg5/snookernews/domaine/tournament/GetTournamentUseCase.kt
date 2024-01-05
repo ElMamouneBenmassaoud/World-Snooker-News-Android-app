@@ -12,7 +12,6 @@ class GetTournamentUseCase @Inject constructor(
     private val tournamentRepository: TournamentRepository
 ){
     suspend operator fun invoke() : List<CompetitionItem> {
-        Log.d("TAG", "invoke: " )
         return tournamentRepository.getTournaments()
     }
 }
