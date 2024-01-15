@@ -31,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -81,7 +80,7 @@ fun SignInScreen(
     ) {
         Text(
             modifier = Modifier.padding(bottom = 10.dp),
-            text = "Welcome",
+            text = stringResource(R.string.welcome),
             fontWeight = FontWeight.Bold,
             fontSize = 35.sp,
         )
@@ -187,7 +186,7 @@ fun SignInScreen(
             shape = RoundedCornerShape(15.dp)
         ) {
             Text(
-                text = "New User ? Sign Up",
+                text = stringResource(R.string.new_user_sign_up),
                 color = Color.White,
                 modifier = Modifier.padding(7.dp)
             )
@@ -196,7 +195,7 @@ fun SignInScreen(
         Spacer(modifier = Modifier.height(15.dp))
 
 
-        Text(text = "Or connect with", fontWeight = FontWeight.Medium, color = Color.Gray)
+        Text(text = stringResource(R.string.or_connect_with), fontWeight = FontWeight.Medium, color = Color.Gray)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -226,7 +225,7 @@ fun SignInScreen(
                 scope.launch {
                     if (state.value?.isSuccess?.isNotEmpty() == true) {
                         val success = state.value?.isSuccess
-                        Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
                         navController.navigate(BrusselsNavScreen.LogoESI.name)
                     }
                 }
@@ -236,7 +235,7 @@ fun SignInScreen(
                 scope.launch {
                     if (state.value?.isError?.isNotEmpty() == true) {
                         val error = state.value?.isError
-                        Toast.makeText(context, "${error}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
                     }
                 }
             }

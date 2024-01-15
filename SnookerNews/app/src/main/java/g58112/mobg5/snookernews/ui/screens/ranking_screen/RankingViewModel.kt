@@ -47,8 +47,6 @@ class RankingViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val rankings = getRankUseCase()
-                Log.d("ranking", "viewmodel: $rankings")
-
                 _rankings.value = rankings
             } catch (e: Exception) {
                 print(e.message)
@@ -74,27 +72,26 @@ class RankingViewModel @Inject constructor(
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
                     // Le joueur n'est pas dans les favoris, procéder à l'ajout
-                    addPlayerToFirestore(user.uid, ranking, db)
-                    _toastMessage.value = "Joueur ajouté aux favoris."
+                    addPlayerToFireStore(user.uid, ranking, db)
+                    _toastMessage.value = "Player added to favorites."
                 } else {
                     // Le joueur est déjà dans les favoris
-                    Log.d(TAG, "Le joueur est déjà un favori.")
-                    _toastMessage.value = "Le joueur est déjà dans les favoris."
+                    _toastMessage.value = "The player is already one of the favorites."
                 }
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la vérification des favoris", e)
+                Log.w(TAG, "Error checking favorites", e)
             }
     }
 
     /**
-     * Adds a player's details to Firestore.
+     * Adds a player's details to FireStore.
      *
      * @param userId The user ID of the player.
      * @param ranking The [RankingItem] details of the player.
-     * @param db The Firestore instance.
+     * @param db The FireStore instance.
      */
-    private fun addPlayerToFirestore(userId: String, ranking: RankingItem, db: FirebaseFirestore) {
+    private fun addPlayerToFireStore(userId: String, ranking: RankingItem, db: FirebaseFirestore) {
         val player = hashMapOf(
             "userId" to userId,
             "id" to ranking.id,

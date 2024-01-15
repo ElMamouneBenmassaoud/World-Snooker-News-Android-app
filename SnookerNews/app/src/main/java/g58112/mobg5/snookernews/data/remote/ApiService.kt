@@ -13,7 +13,7 @@ import javax.inject.Inject
  * @property QueryApi The Retrofit interface for making API requests.
  */
 class ApiService @Inject constructor(
-    private val QueryApi: QueryApi
+    private val _queryApi: QueryApi
 ) {
     /**
      * Fetches the list of player rankings.
@@ -26,7 +26,7 @@ class ApiService @Inject constructor(
     suspend fun getRankings(): List<Ranking> {
         return withContext(Dispatchers.IO) {
 
-            val response = QueryApi.getRankings(
+            val response = _queryApi.getRankings(
                 apiKey = API_KEY
             )
 
@@ -46,7 +46,7 @@ class ApiService @Inject constructor(
     suspend fun getTournaments(): TopTournamentResponse? {
         return withContext(Dispatchers.IO) {
 
-            val response = QueryApi.getTournaments(
+            val response = _queryApi.getTournaments(
                 apiKey = API_KEY
             )
 

@@ -53,7 +53,7 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
                 }
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la récupération des favoris", e)
+                Log.w(TAG, "Error retrieving favorites", e)
             }
     }
 
@@ -74,19 +74,17 @@ class RankingFavViewModel @Inject constructor() : ViewModel() {
                 for (document in documents) {
                     db.collection("PlayerFav").document(document.id).delete()
                         .addOnSuccessListener {
-                            Log.d(TAG, "Joueur supprimé avec succès des favoris.")
-                            _toastMessage.value = "Joueur supprimé des favoris."
+                            _toastMessage.value = "Player removed from favorites."
                         }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Erreur lors de la suppression du joueur des favoris", e)
+                        .addOnFailureListener {
                             _toastMessage.value =
-                                "Erreur lors de la suppression du joueur des favoris."
+                                "Error deleting player from favorites."
                         }
                 }
                 getFavorites()
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la recherche du joueur dans les favoris", e)
+                Log.w(TAG, "Error searching for player in favorites", e)
             }
     }
 

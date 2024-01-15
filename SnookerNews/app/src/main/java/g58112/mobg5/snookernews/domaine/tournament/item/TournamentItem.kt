@@ -10,14 +10,14 @@ import g58112.mobg5.snookernews.data.remote.modelTournament.TopTournamentRespons
  * @property id The unique identifier of the competition (nullable).
  * @property name The name of the competition (nullable).
  * @property gender The gender category of the competition (nullable).
- * @property country_code The country code associated with the competition (nullable).
+ * @property countryCode The country code associated with the competition (nullable).
  * @property nameCategory The name of the competition's category (nullable).
  */
 data class CompetitionItem(
     val id: String?,
     val name: String?,
     val gender: String?,
-    val country_code: String?,
+    val countryCode: String?,
     val nameCategory: String?
 )
 
@@ -36,7 +36,7 @@ fun TopTournamentResponse.toCompetitionItem(): List<CompetitionItem> {
             id = competition.id,
             name = competition.name,
             gender = competition.gender,
-            country_code = competition.category.country_code,
+            countryCode = competition.category.country_code,
             nameCategory = competition.category.name
         )
     }

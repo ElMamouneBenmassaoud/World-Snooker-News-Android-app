@@ -77,7 +77,6 @@ import g58112.mobg5.snookernews.ui.screens.tournament_screen.TournamentScreen
 import g58112.mobg5.snookernews.ui.theme.AppTheme
 
 enum class BrusselsNavScreen {
-    Login,
     LogoESI,
     About,
     Rankings,
@@ -180,13 +179,6 @@ fun BottomNavigationBar(navController: NavController) {
         )
 
         NavigationBarItem(
-            icon = { Icon(Icons.Filled.Info, contentDescription = "Info icon") },
-            label = { Text("About") },
-            selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
-            onClick = { navController.navigate(BrusselsNavScreen.About.name) }
-        )
-
-        NavigationBarItem(
             icon = { Icon(Icons.Filled.AddLocation, contentDescription = "Tournament icon") },
             label = { Text("Tournaments") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.Tournois.name,
@@ -198,6 +190,13 @@ fun BottomNavigationBar(navController: NavController) {
             label = { Text("Rankings") },
             selected = navController.currentDestination?.route == BrusselsNavScreen.Rankings.name,
             onClick = { navController.navigate(BrusselsNavScreen.Rankings.name) }
+        )
+
+        NavigationBarItem(
+            icon = { Icon(Icons.Filled.Info, contentDescription = "Info icon") },
+            label = { Text("About") },
+            selected = navController.currentDestination?.route == BrusselsNavScreen.About.name,
+            onClick = { navController.navigate(BrusselsNavScreen.About.name) }
         )
     }
 }
@@ -273,34 +272,6 @@ fun CustomTopBar(
     }
 }
 
-
-@Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Image(
-        modifier = modifier.size(200.dp),
-        painter = painterResource(R.drawable.loading_img),
-        contentDescription = stringResource(R.string.loading)
-    )
-}
-
-
-/**
- * The home screen displaying error message with re-attempt button.
- */
-@Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.connection_error), contentDescription = ""
-        )
-        Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
-    }
-}
-
 @Composable
 private fun AuthorCredits(modifier: Modifier) {
     Box(
@@ -319,15 +290,14 @@ private fun AuthorCredits(modifier: Modifier) {
 
 fun getScreenTitle(screen: BrusselsNavScreen): String {
     return when (screen) {
-        BrusselsNavScreen.Login -> "Login"
         BrusselsNavScreen.LogoESI -> "Home"
-        BrusselsNavScreen.About -> "About"
+        BrusselsNavScreen.About -> "Profile"
         BrusselsNavScreen.SignIn -> "Sign In"
         BrusselsNavScreen.SignUp -> "Sign Up"
-        BrusselsNavScreen.Rankings -> "Rankings"
-        BrusselsNavScreen.Tournois -> "Tournois"
-        BrusselsNavScreen.RankingFav -> "Ranking Favorites"
-        BrusselsNavScreen.TournoisFav -> "Tournois Favorites"
+        BrusselsNavScreen.Rankings -> "Ranking Players"
+        BrusselsNavScreen.Tournois -> "Tournaments"
+        BrusselsNavScreen.RankingFav -> "Favorite Players"
+        BrusselsNavScreen.TournoisFav -> "Favorite Tournaments"
     }
 }
 

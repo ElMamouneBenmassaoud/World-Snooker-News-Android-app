@@ -68,7 +68,7 @@ fun SignUpScreen(
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val state = viewModel.signUpState.collectAsState(initial = null)
-    val stateSignin = viewModelSignIn.signInState.collectAsState(initial = null)
+    val stateSignIn = viewModelSignIn.signInState.collectAsState(initial = null)
 
     Column(
         modifier = Modifier
@@ -79,12 +79,12 @@ fun SignUpScreen(
     ) {
         Text(
             modifier = Modifier.padding(bottom = 10.dp),
-            text = "Create Account",
+            text = stringResource(R.string.create_account),
             fontWeight = FontWeight.Bold,
             fontSize = 35.sp,
         )
         Text(
-            text = "Enter your credential's to register",
+            text = stringResource(R.string.enter_your_credential_s_to_register),
             fontWeight = FontWeight.Medium,
             fontSize = 15.sp, color = Color.Gray,
 
@@ -159,14 +159,14 @@ fun SignUpScreen(
             shape = RoundedCornerShape(15.dp)
         ) {
             Text(
-                text = "Sign Up",
+                text = stringResource(R.string.sign_up),
                 color = Color.White,
                 modifier = Modifier
                     .padding(7.dp)
             )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            if (state.value?.isLoading == true || stateSignin.value?.isLoading == true) {
+            if (state.value?.isLoading == true || stateSignIn.value?.isLoading == true) {
                 CircularProgressIndicator()
             }
         }
@@ -183,7 +183,7 @@ fun SignUpScreen(
             shape = RoundedCornerShape(15.dp)
         ) {
             Text(
-                text = "Already Have an account ? ",
+                text = stringResource(R.string.already_have_an_account),
                 color = Color.White,
                 modifier = Modifier.padding(7.dp)
             )
@@ -193,7 +193,7 @@ fun SignUpScreen(
                 .padding(
                     top = 20.dp,
                 ),
-            text = "Or connect with",
+            text = stringResource(R.string.or_connect_with),
             fontWeight = FontWeight.Medium, color = Color.Gray
         )
         Row(
@@ -222,21 +222,21 @@ fun SignUpScreen(
 
         }
     }
-    LaunchedEffect(key1 = stateSignin.value?.isSuccess) {
+    LaunchedEffect(key1 = stateSignIn.value?.isSuccess) {
         scope.launch {
-            if (stateSignin.value?.isSuccess?.isNotEmpty() == true) {
-                val success = stateSignin.value?.isSuccess
-                Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
+            if (stateSignIn.value?.isSuccess?.isNotEmpty() == true) {
+                val success = stateSignIn.value?.isSuccess
+                Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
                 navController.navigate(BrusselsNavScreen.LogoESI.name)
             }
         }
     }
 
-    LaunchedEffect(key1 = stateSignin.value?.isError) {
+    LaunchedEffect(key1 = stateSignIn.value?.isError) {
         scope.launch {
-            if (stateSignin.value?.isError?.isNotEmpty() == true) {
-                val error = stateSignin.value?.isError
-                Toast.makeText(context, "${error}", Toast.LENGTH_LONG).show()
+            if (stateSignIn.value?.isError?.isNotEmpty() == true) {
+                val error = stateSignIn.value?.isError
+                Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -244,7 +244,10 @@ fun SignUpScreen(
     LaunchedEffect(key1 = googleSignInState.success) {
         scope.launch {
             if (googleSignInState.success != null) {
-                Toast.makeText(context, "Sign In Success", Toast.LENGTH_LONG).show()
+                Toast.makeText(context,
+                    "Sign In Success",
+                    Toast.LENGTH_LONG
+                ).show()
                 navController.navigate(BrusselsNavScreen.LogoESI.name)
             }
         }

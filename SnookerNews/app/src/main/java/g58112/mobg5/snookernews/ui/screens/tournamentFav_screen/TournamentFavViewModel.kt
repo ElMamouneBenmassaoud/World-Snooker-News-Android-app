@@ -7,8 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import g58112.mobg5.snookernews.data.remote.modelTournament.Competition
-import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,7 +32,7 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
     /**
      * Fetches and updates the list of the user's favorite tournaments.
      *
-     * This method retrieves the favorite tournaments from Firestore and updates the UI state accordingly.
+     * This method retrieves the favorite tournaments from FireStore and updates the UI state accordingly.
      */
     private fun getFavorites() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
@@ -49,13 +47,13 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
                         id = doc.getString("id") ?: "",
                         name = doc.getString("name") ?: "",
                         gender = doc.getString("gender") ?: "",
-                        country_code = doc.getString("country_code") ?: "",
+                        countryCode = doc.getString("country_code") ?: "",
                         nameCategory = doc.getString("nameCategory") ?: ""
                     )
                 }
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la récupération des favoris", e)
+                Log.w(TAG, "Error retrieving favorites", e)
             }
     }
 
@@ -76,11 +74,9 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
                 for (document in documents) {
                     db.collection("TournamentFav").document(document.id).delete()
                         .addOnSuccessListener {
-                            Log.d(TAG, "Joueur supprimé avec succès des favoris.")
                             _toastMessage.value = "Tournament deleted from favorites."
                         }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Erreur lors de la suppression du joueur des favoris", e)
+                        .addOnFailureListener {
                             _toastMessage.value =
                                 "Error when deleting tournament from favorites."
                         }
@@ -88,7 +84,7 @@ class TournamentFavViewModel @Inject constructor() : ViewModel() {
                 getFavorites()
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la recherche du joueur dans les favoris", e)
+                Log.w(TAG, "Error searching for player in favorites", e)
             }
     }
 

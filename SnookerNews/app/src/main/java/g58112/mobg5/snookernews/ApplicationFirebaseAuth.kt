@@ -10,5 +10,4 @@ import dagger.hilt.android.HiltAndroidApp
  * This setup is necessary for integrating Firebase services and Dagger-Hilt dependency injection framework.
  */
 @HiltAndroidApp
-class ApplicationFirebaseAuth:Application() {
-}
+class ApplicationFirebaseAuth:Application()

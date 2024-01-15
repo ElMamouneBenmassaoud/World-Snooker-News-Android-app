@@ -28,8 +28,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import g58112.mobg5.snookernews.rankingplayer.RankingPlayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import g58112.mobg5.snookernews.R
 import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
 import g58112.mobg5.snookernews.tournamentcard.TournamentCard
 
@@ -78,10 +80,10 @@ fun TournamentScreen() {
         LazyColumn {
             items(tournaments) { competition: CompetitionItem ->
                 TournamentCard(
-                    name = competition.name ?: "Inconnu",
-                    gender = competition.gender ?: "Mixed",
-                    categoryName = competition.nameCategory ?: "International",
-                    country = competition.country_code ?: "Eng",
+                    name = competition.name ?: stringResource(R.string.emptyString),
+                    gender = competition.gender ?: stringResource(R.string.mixed),
+                    categoryName = competition.nameCategory ?: stringResource(R.string.international),
+                    country = competition.countryCode ?: stringResource(R.string.eng),
                     onClick = {
                         tournamentViewModel.addTournamentToFavorites(competition)
                     }
@@ -94,7 +96,7 @@ fun TournamentScreen() {
 
 @Preview
 @Composable
-fun TournamentardPreview() {
+fun TournamentCardPreview() {
     RankingPlayer(
         playerName = "Mamoun benmassaoud",
         rank = "1",

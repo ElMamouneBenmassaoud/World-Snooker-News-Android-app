@@ -31,9 +31,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import g58112.mobg5.snookernews.favbuttons.FavButtons
 import g58112.mobg5.snookernews.ui.screens.BrusselsNavScreen
 
 @Composable
@@ -65,9 +65,9 @@ fun UserProfile(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        UserInfoCard(label = "Email", value = email)
-        UserInfoCard(label = "Provide", value = provider)
-        UserInfoCard(label = "Created at", value = creationDate)
+        UserInfoCard(label = stringResource(R.string.email), value = email)
+        UserInfoCard(label = stringResource(R.string.provide), value = provider)
+        UserInfoCard(label = stringResource(R.string.created_at), value = creationDate)
 
         Spacer(modifier = Modifier.weight(1f))
 
@@ -85,7 +85,7 @@ fun UserProfile(
                     containerColor = Color(0xFF69D3FF), contentColor = Color.White
                 )
             ) {
-                Text("Players favoris")
+                Text(stringResource(R.string.favorite_players))
             }
             Button(
                 onClick = { navController.navigate(BrusselsNavScreen.TournoisFav.name) },
@@ -93,7 +93,7 @@ fun UserProfile(
                     containerColor = Color(0xFF33CE25), contentColor = Color.White
                 )
             ) {
-                Text("Tournaments favoris")
+                Text(stringResource(R.string.favorite_tournaments))
             }
         }
 
@@ -145,13 +145,13 @@ fun UserProfileScreen(userViewModel: UserViewModel = viewModel(), navController:
 
         UserProfile(
             profileImage = profileImagePainter,
-            email = it.email ?: "Unavailable",
+            email = it.email ?: stringResource(R.string.unavailable),
             provider = providerId,
             creationDate = creationDate,
             navController = navController
         )
     } ?: run {
-        Text("Aucune information d'utilisateur disponible.")
+        Text(stringResource(R.string.no_user_information_available))
     }
 }
 

@@ -9,8 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
-import g58112.mobg5.snookernews.domaine.ranking.GetRankUseCase
-import g58112.mobg5.snookernews.domaine.ranking.item.RankingItem
 import g58112.mobg5.snookernews.domaine.tournament.GetTournamentUseCase
 import g58112.mobg5.snookernews.domaine.tournament.item.CompetitionItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -73,26 +71,25 @@ class TournamentViewModel @Inject constructor(
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
-                    addTournamentToFirestore(user.uid, tournament, db)
-                    _toastMessage.value = "Tournoi ajouté aux favoris."
+                    addTournamentToFireStore(user.uid, tournament, db)
+                    _toastMessage.value = "Tournament added to favorites."
                 } else {
-                    Log.d(TAG, "Le tournoi est déjà un favori.")
-                    _toastMessage.value = "Le tournoi est déjà dans les favoris."
+                    _toastMessage.value = "The tournament is already a favorite."
                 }
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Erreur lors de la vérification des favoris", e)
+                Log.w(TAG, "Error checking favorites", e)
             }
     }
 
     /**
-     * Adds a tournament's details to Firestore.
+     * Adds a tournament's details to FireStore.
      *
      * @param userId The user ID of the tournament.
      * @param tournament The [CompetitionItem] details of the tournament.
-     * @param db The Firestore instance.
+     * @param db The FireStore instance.
      */
-    private fun addTournamentToFirestore(
+    private fun addTournamentToFireStore(
         userId: String,
         tournament: CompetitionItem,
         db: FirebaseFirestore
@@ -101,7 +98,7 @@ class TournamentViewModel @Inject constructor(
             "userId" to userId,
             "id" to tournament.id,
             "name" to tournament.name,
-            "country_code" to tournament.country_code,
+            "country_code" to tournament.countryCode,
             "gender" to tournament.gender,
             "nameCategory" to tournament.nameCategory
         )

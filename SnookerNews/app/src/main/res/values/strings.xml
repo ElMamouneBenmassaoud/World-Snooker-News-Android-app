@@ -12,4 +12,26 @@
     <string name="ok">OK</string>
     <string name="hide_password">Hide the password</string>
     <string name="display_password">Display the password</string>
+    <string name="welcome">Welcome</string>
+    <string name="new_user_sign_up">New User ? Sign Up</string>
+    <string name="or_connect_with">Or connect with</string>
+    <string name="email">Email</string>
+    <string name="provide">Provide</string>
+    <string name="created_at">Created at</string>
+    <string name="favorite_players">Favorite players</string>
+    <string name="favorite_tournaments">Favorite Tournois</string>
+    <string name="no_user_information_available">No user information available.</string>
+    <string name="search_a_player">Search a player</string>
+    <string name="money">Money : %1$s$</string>
+    <string name="create_account">Create Account</string>
+    <string name="enter_your_credential_s_to_register">Enter your credential\'s to register</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">"Already Have an account ? "</string>
+    <string name="emptyString" />
+    <string name="international">International</string>
+    <string name="eng">Eng</string>
+    <string name="mixed">Mixed</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="no_favorite_tournament_at_the_moment">No favorite tournament at the moment.</string>
+    <string name="no_favorite_players_at_the_moment">No favorite players at the moment.</string>
 </resources>

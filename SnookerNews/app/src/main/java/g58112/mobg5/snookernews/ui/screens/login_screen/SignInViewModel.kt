@@ -9,7 +9,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import g58112.mobg5.snookernews.data.AuthRepository
 import g58112.mobg5.snookernews.util.Resource
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
